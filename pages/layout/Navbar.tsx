@@ -26,31 +26,33 @@ const Routes = [
   },
 ];
 
-export const Navbar = () => (
-  <nav aria-label="Основная навигация" className={styles.Nav}>
-    {Routes.map((route) => (
-      <Fragment key={route.link}>
-        <div role="menuitem" className={styles.LinkBlock}>
-          <Link href={route.link}>
-            <a className={styles.Link} aria-haspopup={!!route.subRoutes}>
-              {route.caption}
-            </a>
-          </Link>
-          {route.subRoutes && (
-            <menu className={styles.SubMenu}>
-              <ul className={styles.SubMenuList}>
-                {route.subRoutes.map((subRoute) => (
-                  <li className={styles.SubMenuListItem} key={subRoute.caption}>
-                    <Link href={subRoute.link}>
-                      <a className={styles.SubMenuLink}>{subRoute.caption}</a>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </menu>
-          )}
-        </div>
-      </Fragment>
-    ))}
-  </nav>
-);
+export default function Navbar() {
+  return (
+    <nav aria-label="Основная навигация" className={styles.Nav}>
+      {Routes.map((route) => (
+        <Fragment key={route.link}>
+          <div role="menuitem" className={styles.LinkBlock}>
+            <Link href={route.link}>
+              <a className={styles.Link} aria-haspopup={!!route.subRoutes}>
+                {route.caption}
+              </a>
+            </Link>
+            {route.subRoutes && (
+              <menu className={styles.SubMenu}>
+                <ul className={styles.SubMenuList}>
+                  {route.subRoutes.map((subRoute) => (
+                    <li className={styles.SubMenuListItem} key={subRoute.caption}>
+                      <Link href={subRoute.link}>
+                        <a className={styles.SubMenuLink}>{subRoute.caption}</a>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </menu>
+            )}
+          </div>
+        </Fragment>
+      ))}
+    </nav>
+  );
+};
