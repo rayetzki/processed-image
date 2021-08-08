@@ -9,29 +9,57 @@
   position: relative;
 }
 
+.LinkBlock, .SubMenu {
+  border-radius: .5em;
+}
+
 /* Link */
 .Link {
-  text-decoration: underline;
+  display: block;
+  padding: .5rem 1rem;
+  font-size: 1.5rem;
+}
+
+.Link, .SubLink {
+  color: var(--nav-text-color);
+}
+
+.Link:not(.Link[aria-haspopup="true"]):hover, .SubMenuLink:hover {
+  color: var(--nav-link-hover);
+  border-bottom: 1px solid var(--nav-hover-border-bottom);
 }
 
 /* SubMenu */
 .SubMenu {
-  display: none;
+  visibility: hidden;
   position: absolute;
-  margin: 0;
-  padding: 0;
-}
-
-.LinkBlock[data-has-submenu="true"]:hover .SubMenu {
   display: flex;
+  justify-content: center;
+  background-color: var(--nav-background);
+  margin: 0;
+  border: 1px solid var(--nav-text-color);
+  padding: 1ch 2ch 1ch;
+  left: calc(-1rem / 2);
 }
 
-.LinkBlock[data-has-submenu="true"] .SubMenu .SubMenuList .SubMenuListItem .Link:hover {
-  color: tomato;
+.LinkBlock:hover .Link[aria-haspopup="true"] + .SubMenu,
+.Link[aria-haspopup="true"]:focus-visible + .SubMenu {
+  visibility: visible;
 }
 
 .SubMenuList {
   margin: 0;
   padding: 0;
   list-style-type: none;
+}
+
+.SubMenuListItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.SubMenuLink {
+  font-size: 1.25rem;
+  color: var(--nav-text-color);
 }

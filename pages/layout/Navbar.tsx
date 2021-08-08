@@ -27,12 +27,14 @@ const Routes = [
 ];
 
 export const Navbar = () => (
-  <nav className={styles.Nav}>
+  <nav aria-label="Основная навигация" className={styles.Nav}>
     {Routes.map((route) => (
       <Fragment key={route.link}>
-        <div className={styles.LinkBlock} data-has-submenu={!!route.subRoutes}>
+        <div role="menuitem" className={styles.LinkBlock}>
           <Link href={route.link}>
-            <a className={styles.Link}>{route.caption}</a>
+            <a className={styles.Link} aria-haspopup={!!route.subRoutes}>
+              {route.caption}
+            </a>
           </Link>
           {route.subRoutes && (
             <menu className={styles.SubMenu}>
@@ -40,7 +42,7 @@ export const Navbar = () => (
                 {route.subRoutes.map((subRoute) => (
                   <li className={styles.SubMenuListItem} key={subRoute.caption}>
                     <Link href={subRoute.link}>
-                      <a className={styles.Link}>{subRoute.caption}</a>
+                      <a className={styles.SubMenuLink}>{subRoute.caption}</a>
                     </Link>
                   </li>
                 ))}
