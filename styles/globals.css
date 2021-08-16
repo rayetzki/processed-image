@@ -12,6 +12,7 @@ body {
   --nav-text-color: black;
   --nav-link-hover: orange;
   --nav-hover-border-bottom: tomato;
+  --nav-active-color: red;
 }
 
 a {

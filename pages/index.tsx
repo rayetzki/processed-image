@@ -1,14 +1,12 @@
-import Head from 'next/head';
-import Navbar from './layout/Navbar';
+import Head from "next/head";
 
 export default function Home() {
   return (
     <>
       <Head>
         <title>Пленочная I & O</title>
-        <meta name="description" content="Film gallery by Illia Raietskyi" />
+        <meta name="description" content="Пленочная галерея от I & O" />
       </Head>
-      <Navbar />
     </>
-  )
+  );
 }

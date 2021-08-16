@@ -24,6 +24,16 @@
   color: var(--nav-text-color);
 }
 
+.Active {
+  border-radius: unset;
+  border-bottom: 1px dashed var(--nav-active-color);
+  width: fit-content;
+}
+
+.Active .Link, .Active .SubMenuLink {
+  color: var(--nav-active-color);
+}
+
 .Link:not(.Link[aria-haspopup="true"]):hover, .SubMenuLink:hover {
   color: var(--nav-link-hover);
   border-bottom: 1px solid var(--nav-hover-border-bottom);
@@ -40,6 +50,7 @@
   border: 1px solid var(--nav-text-color);
   padding: 1ch 2ch 1ch;
   left: calc(-1rem / 2);
+  transition: all .4s ease-in-out;
 }
 
 .LinkBlock:hover .Link[aria-haspopup="true"] + .SubMenu,
