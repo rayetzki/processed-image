@@ -2,12 +2,16 @@ import { ResourceApiResponse } from "cloudinary";
 import { GetStaticPropsContext } from "next";
 import Image from 'next/image'; 
 import Head from "next/head";
-import type { Image as ImageBody } from '../types';
 import css from '../styles/Gallery.module.css';
 
 interface BasicPageProps {
 	page: string;
-	images: ImageBody[];
+	images: {
+		src: string;
+		width: number;
+		height: number;
+		description: string;
+	}[];
 }
 
 const BasicPage = ({
