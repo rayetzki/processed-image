@@ -6,6 +6,7 @@ import css from '../styles/Gallery.module.css';
 
 interface BasicPageProps {
 	page: string;
+	error: unknown;
 	images: {
 		src: string;
 		width: number;
@@ -64,7 +65,7 @@ export async function getStaticProps(context: GetStaticPropsContext) {
 	try {
 		const images: ResourceApiResponse = await fetch(`${process.env.API_URL}/api/images?folder=${folder}`).then(response => response.json());
 		return { props: { images } };
-	} catch(error) {
+	} catch(error: unknown) {
 		console.error(error);
 		return { props: { error } };
 	}
