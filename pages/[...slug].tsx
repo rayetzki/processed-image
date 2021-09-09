@@ -32,6 +32,7 @@ const BasicPage = ({
 						src={src}
 						width={`${width}`}
 						height={`${height}`}
+						objectFit='cover'
 						quality={100}
 						className={css.ImageContainer}
 						loading='lazy' 
