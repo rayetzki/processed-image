@@ -18,8 +18,8 @@ const Routes = [
       { link: "odessa", caption: "Одесса" },
       { link: "korosten", caption: "Коростень" },
       { link: "kharkiv", caption: "Харьков" },
-      { link: "chernigov", caption: "Чернигов" },
-      { link: "kiev", caption: "Киев" },
+      { link: "chernihiv", caption: "Чернигов" },
+      { link: "kyiv", caption: "Киев" },
     ].map(({ link, caption }) => ({
       link: `/cities?city=${link}`,
       caption,
@@ -33,11 +33,11 @@ export default function Navbar() {
   return (
     <nav aria-label="Основная навигация" className={styles.Nav}>
       {Routes.map((route) => (
-        <Fragment key={route.link}>
+        <Fragment key={route.caption}>
           <div role="menuitem" className={classNames(styles.LinkBlock, {
             [styles.Active]: route.link === currentRoute
           })}>
-            <Link href={route.link ? route.link : ''}>
+            <Link href={route.link || '/'}>
               <a className={styles.Link} aria-haspopup={!!route.subRoutes}>
                 {route.caption}
               </a>
@@ -46,9 +46,9 @@ export default function Navbar() {
               <menu className={styles.SubMenu}>
                 <ul className={styles.SubMenuList}>
                   {route.subRoutes.map((subRoute) => (
-                    <li className={classNames(styles.LinkBlock, {
+                    <li key={subRoute.link} className={classNames(styles.LinkBlock, {
                       [styles.Active]: subRoute.link === currentRoute
-                    })} key={subRoute.caption}>
+                    })}>
                       <Link href={subRoute.link}>
                         <a className={styles.SubMenuLink}>{subRoute.caption}</a>
                       </Link>
