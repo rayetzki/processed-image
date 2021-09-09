@@ -8,6 +8,11 @@ export default function handler(request: NextApiRequest, response: NextApiRespon
 		prefix: request.query.folder,
 		max_results: 100,
 	}).then(({ resources }: ResourceApiResponse) => {
-		response.status(200).json(resources.map(image => image.secure_url));
+		response.status(200).json(resources.map(image => ({
+			src: image.secure_url,
+			width: image.width,
+			height: image.height,
+			description: image.image_metadata,
+		})));
 	});
 }

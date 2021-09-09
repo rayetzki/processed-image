@@ -1,0 +1,6 @@
+.Gallery {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1.5fr));
+	grid-gap: 2em;
+	padding: 1.5em;
+}
