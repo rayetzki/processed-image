@@ -47,6 +47,7 @@
   justify-content: center;
   background-color: var(--nav-background);
   margin: 0;
+	z-index: 1;
   border: 1px solid var(--nav-text-color);
   padding: 1ch 2ch 1ch;
   left: calc(-1rem / 2);

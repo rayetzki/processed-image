@@ -34,9 +34,9 @@ const BasicPage = ({
 					width={`${width}`}
 					height={`${height}`}
 					objectFit='cover'
-					quality={100}
+					loading='lazy'
+					tabIndex={0}
 					className={css.ImageContainer}
-					loading='lazy' 
 				/>
 			))}
 		</section>
