@@ -2,17 +2,25 @@ import { ResourceApiResponse } from "cloudinary";
 import { GetStaticPropsContext } from "next";
 import Head from "next/head";
 
-const BasicPage = ({ 
-  page = 'Животные'
-}) => (
-  <>
-    <Head>
-      <title>Пленочная I & O</title>
-      <meta name="description" content={`${page} от I & O`} />
-    </Head>
-  </>
-);
+interface BasicPageProps {
+	page: string;
+	images: string[];
+}
 
+const BasicPage = ({
+  page = 'Животные',
+	images
+}: BasicPageProps) => {
+	console.log({ images });
+	return (
+			<>
+			<Head>
+				<title>Пленочная I & O</title>
+				<meta name="description" content={`${page} от I & O`} />
+			</Head>
+		</>
+	)
+}
 export default BasicPage;
 
 export async function getStaticPaths() {
@@ -33,5 +41,5 @@ export async function getStaticProps(context: GetStaticPropsContext) {
 	const folder = context.params?.slug && context.params.slug[0];
 	if (!folder) return;
 	const images: ResourceApiResponse = await fetch(`${process.env.API_URL}/api/images?folder=${folder}`).then(response => response.json());
-	return { props: { data: images } };
+	return { props: { images } };
 }
