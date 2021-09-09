@@ -5,7 +5,7 @@ export default function handler({ query: { folder: prefix } }: NextApiRequest, r
 	return cloudinary.api.resources({
 		resource_type: 'image',
 		type: 'upload',
-		prefix,
+		tag: prefix,
 		max_results: 100,
 	}).then(({ resources }: ResourceApiResponse) => {
 		response.status(200).json({ prefix, resources });
