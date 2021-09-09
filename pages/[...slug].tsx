@@ -32,6 +32,10 @@ export async function getStaticPaths() {
 export async function getStaticProps(context: GetStaticPropsContext) {
 	const folder = context.params?.slug && context.params.slug[0];
 	if (!folder) return;
-  const images: ResourceApiResponse = await fetch(`${process.env.API_URL}/api/images?folder=${folder}`).then(response => response.json());
-  return { props: { data: images } };
+	try {
+		const images: ResourceApiResponse = await fetch(`${process.env.API_URL}/api/images?folder=${folder}`).then(response => response.json());
+		return { props: { data: images } };
+	} catch(error) {
+		return { props: { data: null } };
+	}
 }
