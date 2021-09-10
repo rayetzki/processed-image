@@ -78,7 +78,9 @@ function MobileNav() {
 			<div 
 				tabIndex={0} 
 				onClick={() => setMobileMenuExpanded(!isMobileMenuExpanded)} 
-				className={styles.NavMobile}
+				className={cx(styles.NavMobile, {
+					[styles.NavMobileOpening]: isMobileMenuExpanded,
+				})}
 			>
 				<span></span>
 				<span></span>
