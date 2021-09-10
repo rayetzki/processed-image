@@ -4,6 +4,15 @@ import { useRouter } from "next/router";
 import styles from "./Navbar.module.css";
 import cx from "classnames";
 
+const SubRoutes =  [
+	{ link: "zp", caption: "Запорожье" },
+	{ link: "odessa", caption: "Одесса" },
+	{ link: "korosten", caption: "Коростень" },
+	{ link: "kharkiv", caption: "Харьков" },
+	{ link: "chernihiv", caption: "Чернигов" },
+	{ link: "kyiv", caption: "Киев" },
+].map(({ link, caption }) => ({ link: `/${link}`, caption }));
+
 const Routes = [
   { link: "/animals", caption: "Животные" },
   { link: "/people", caption: "Люди" },
@@ -11,20 +20,7 @@ const Routes = [
   { link: "/plants", caption: "Растения" },
   { link: "/blacknwhite", caption: "Черно-Белое" },
   { link: "/landscape", caption: "Пейзажи" },
-  {
-    caption: "Города",
-    subRoutes: [
-      { link: "zp", caption: "Запорожье" },
-      { link: "odessa", caption: "Одесса" },
-      { link: "korosten", caption: "Коростень" },
-      { link: "kharkiv", caption: "Харьков" },
-      { link: "chernihiv", caption: "Чернигов" },
-      { link: "kyiv", caption: "Киев" },
-    ].map(({ link, caption }) => ({
-      link: `/cities?city=${link}`,
-      caption,
-    })),
-  },
+  { caption: "Города", subRoutes: SubRoutes }
 ];
 
 const MobileRoutes = [
@@ -34,17 +30,7 @@ const MobileRoutes = [
   { link: "/plants", caption: "Растения" },
   { link: "/blacknwhite", caption: "Черно-Белое" },
   { link: "/landscape", caption: "Пейзажи" },
-	...[
-		{ link: "zp", caption: "Запорожье" },
-		{ link: "odessa", caption: "Одесса" },
-		{ link: "korosten", caption: "Коростень" },
-		{ link: "kharkiv", caption: "Харьков" },
-		{ link: "chernihiv", caption: "Чернигов" },
-		{ link: "kyiv", caption: "Киев" },
-	].map(({ link, caption }) => ({
-		link: `/cities?city=${link}`,
-		caption: `Города -> ${caption}`,
-	}))
+	...SubRoutes
 ];
 
 function DesktopNav() {
