@@ -1,18 +1,23 @@
-.Nav {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  padding: 2rem;
-}
-
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 768px) {
 	.Nav {
-		padding: 1rem;
+		padding: 2rem;
+	}
+
+	.NavMobileBlock {
+		display: none;
+	}
+
+	.DesktopNav {
+		display: flex;
+		justify-content: space-between;
+		padding: 0;
+		margin: 0;
+		list-style-type: none;
 	}
 }
 
 .LinkBlock {
-  position: relative;
+	position: relative;
 }
 
 .LinkBlock, .SubMenu {
@@ -83,18 +88,32 @@
 }
 
 /* Mobile navigation */
+@media screen and (max-width: 768px) {
+	.Nav {
+		padding: 1rem;
+	}
+	
+	.NavMobileBlock {
+		display: flex;
+		justify-content: space-between;
+	}
 
-.NavMobile {
-	position: relative;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	width: 2.5em;
-	align-self: center;
-	height: 1.5em;
-	transform: rotate(0deg);
-	transition: 0.5s ease-in-out;
-  cursor: pointer;
+	.DesktopNav {
+		display: none;
+	}
+
+	.NavMobile {
+		display: flex;
+		position: relative;
+		align-self: center;
+		flex-direction: column;
+		justify-content: space-between;
+		width: 2.5em;
+		height: 1.5em;
+		transform: rotate(0deg);
+		transition: 0.5s ease-in-out;
+		cursor: pointer;
+	}
 }
 
 .NavMobileHeading {
