@@ -74,8 +74,9 @@ function MobileNav() {
 
 	return (
 		<div className={styles.NavMobileBlock}>
-			<h2 className={styles.NavMobileHeading}>Пленочная I & 0</h2>
+			<h2 className={styles.NavMobileTitle}>Пленочная I & 0</h2>
 			<div 
+				 onKeyDown={e => e.key === 'Enter' && setMobileMenuExpanded(true)}
 				tabIndex={0} 
 				onClick={() => setMobileMenuExpanded(!isMobileMenuExpanded)} 
 				className={cx(styles.NavMobile, {
@@ -87,7 +88,7 @@ function MobileNav() {
 				<span></span>
 			</div>
 			{isMobileMenuExpanded && (
-				<ul className={styles.NavMobileExpanded}>
+				<ul className={styles.NavMobileExpanded} onKeyDown={e => e.key === 'Escape' && setMobileMenuExpanded(false)}>
 					{MobileRoutes.map(route => (
 						<li key={route.caption} role="menuitem" className={cx({
 							[styles.NavMobileActive]: route.link === currentRoute

@@ -1,0 +1,84 @@
+/* First Page navigation */
+
+.Navigation {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 1rem;
+}
+
+.FirstPage {
+	position: relative;
+}
+
+.FirstPageLink {
+	position: relative;
+	top: 1em;
+	left: 1em;
+	cursor: pointer;
+}
+
+.FirstPageText {
+	position: absolute;
+	font-size: 1.25em;
+	right: 1.5em;
+	bottom: -0.75em;
+	margin: 0;
+	width: max-content;
+}
+
+.Title {
+	margin: 0;
+	display: flex;
+	align-items: center;
+}
+
+.Title::before {
+	content: '';
+	display: inline-block;
+	width: 2em;
+	height: 2em;
+	margin-bottom: .5em;
+	margin-right: .5em;
+	background-image: url('../public/logo.jpg');
+	background-size: cover;
+}
+
+/* Main Page Body  */
+
+.AuthorsTitle {
+	text-align: center;
+	font-size: 1.75em;
+}
+
+.AuthorsGrid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	grid-gap: 1em;
+	padding: 1em;
+}
+
+.AuthorFooter {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.AuthorLink {
+	display: flex;
+	align-items: center;
+	padding: .5em;
+}
+
+.AuthorLink p {
+	margin: 0 0 0 0.25em;
+}
+
+.AuthorName {
+	margin: 0;
+	font-size: 1.25em;
+}
+
+.Link {
+	text-decoration: none;
+}

@@ -114,20 +114,20 @@
 		cursor: pointer;
 	}
 
-	.NavMobileHeading {
+	.NavMobileTitle {
 		margin: 0;
 		display: flex;
 		align-items: center;
 	}
 	
-	.NavMobileHeading::before {
+	.NavMobileTitle::before {
 		content: '';
 		display: inline-block;
 		width: 2em;
 		height: 2em;
 		margin-bottom: .5em;
 		margin-right: .5em;
-		background-image: url('../../public/logo.jpg');
+		background-image: url('/logo.jpg');
 		background-size: cover;
 	}
 	
@@ -159,7 +159,7 @@
 
 	.NavMobileOpening span:nth-child(3) {
 		transform: rotate(-135deg);
-		bottom: 9px;
+		bottom: 10px;
 	}
 	
 	.NavMobileExpanded {
@@ -172,7 +172,7 @@
 		z-index: 1;
 		list-style-type: none;
 		margin: 0;
-		padding: 0;
+		padding: .75em;
 	}
 	
 	.NavMobileExpanded li {

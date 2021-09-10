@@ -1,13 +1,4 @@
-module.exports = {
-	async redirects() {
-		return [
-      {
-        source: '/',
-        destination: '/blacknwhite',
-				permanent: true
-      },
-    ]
-	},	
+module.exports = {	
   reactStrictMode: true,
 	images: {
     domains: ['res.cloudinary.com'],
