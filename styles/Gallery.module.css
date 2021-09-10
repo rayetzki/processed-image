@@ -1,6 +1,11 @@
 .Gallery {
 	display: grid;
   grid-gap: 2em;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 	padding: .5em;
+}
+
+.ImageContainer {
+	border-radius: .25em;
+	backdrop-filter: sepia(.6);
 }

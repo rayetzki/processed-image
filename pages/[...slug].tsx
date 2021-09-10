@@ -36,7 +36,7 @@ const BasicPage = ({
 					objectFit='cover'
 					loading='lazy'
 					tabIndex={0}
-					className={css.ImageContainer}
+					className={`${css.ImageContainer} ${css.ImageContainer}-${index + 1}`}
 				/>
 			))}
 		</section>

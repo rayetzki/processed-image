@@ -1,8 +1,14 @@
 .Nav {
   position: relative;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   padding: 2rem;
+}
+
+@media screen and (max-width: 768px) {
+	.Nav {
+		padding: 1rem;
+	}
 }
 
 .LinkBlock {
@@ -74,4 +80,72 @@
 .SubMenuLink {
   font-size: 1.25rem;
   color: var(--nav-text-color);
+}
+
+/* Mobile navigation */
+
+.NavMobile {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 2.5em;
+	align-self: center;
+	height: 1.5em;
+	transform: rotate(0deg);
+	transition: 0.5s ease-in-out;
+  cursor: pointer;
+}
+
+.NavMobileHeading {
+	margin: 0;
+	display: flex;
+	align-items: center;
+}
+
+.NavMobileHeading::before {
+	content: '';
+	display: inline-block;
+	width: 2em;
+	height: 2em;
+	margin-bottom: .5em;
+	margin-right: .5em;
+	background-image: url('../../public/logo.jpg');
+	background-size: cover;
+}
+
+.NavMobileActive {
+	border-radius: unset;
+  border-bottom: 1px dashed var(--nav-active-color);
+}
+
+.NavMobile span {
+  display: block;
+  height: .25em;
+  width: 100%;
+  background: var(--nav-mobile-burger-stroke);
+  border-radius: .5em;
+  opacity: 1;
+  transform: rotate(0deg);
+  transition: 0.25s ease-in-out;
+}
+
+.NavMobileExpanded {
+	position: absolute;
+	right: 1.5em;
+	top: 4.5em;
+	background: var(--nav-background);
+	box-shadow: var(--nav-mobile-expanded-shadow);
+	border-top: 1px solid var(--nav-mobile-expanded-border);
+	z-index: 1;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.NavMobileExpanded li {
+	font-size: 1.25em;
+	text-decoration: underline var(--nav-mobile-link-underline);
+	margin: 0;
+	text-align: center;
 }

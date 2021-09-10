@@ -2,7 +2,6 @@ html,
 body {
   padding: 0;
   margin: 0;
-	display: flex;
   font-family: 'Caveat', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, cursive;
 }
@@ -13,6 +12,11 @@ body {
   --nav-hover-border-bottom: tomato;
   --nav-active-color: red;
 	--nav-background: white;
+
+	--nav-mobile-expanded-shadow: black;
+	--nav-mobile-expanded-border: black;
+	--nav-mobile-link-underline: indianred;
+	--nav-mobile-burger-stroke: #d3531a;
 }
 
 a {
