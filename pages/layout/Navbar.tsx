@@ -51,7 +51,7 @@ const MobileRoutes = [
 
 export default function Navbar() {
   const { asPath: currentRoute } = useRouter();
-	const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
+	const isMobile = useMediaQuery({ maxWidth: 768 });
 	const [isMobileMenuExpanded, setMobileMenuExpanded] = useState(false);
 
   return (
@@ -84,24 +84,9 @@ export default function Navbar() {
           </div>
         </Fragment>
       ))}
-			{isMobile && isMobileMenuExpanded && (
-				<ul className={styles.NavMobileExpanded}>
-					{MobileRoutes.map(route => (
-						<Fragment key={route.caption}>
-							<li role="menuitem" className={cx(styles.LinkBlock, {
-								[styles.NavMobileActive]: route.link === currentRoute
-							})}>
-								<Link href={route.link || '/'}>
-									<a className={styles.Link}>{route.caption}</a>
-								</Link>
-							</li>
-						</Fragment>
-					))}
-				</ul>
-			)}
 			{isMobile && (
 				<Fragment>
-					<h1 className={styles.NavMobileHeading}>Пленочная I & 0</h1>
+					<h2 className={styles.NavMobileHeading}>Пленочная I & 0</h2>
 					<div 
 						tabIndex={0} 
 						onClick={() => setMobileMenuExpanded(!isMobileMenuExpanded)} 
@@ -111,6 +96,21 @@ export default function Navbar() {
 							<span></span>
 							<span></span>
 					</div>
+					{isMobileMenuExpanded && (
+						<ul className={styles.NavMobileExpanded}>
+							{MobileRoutes.map(route => (
+								<Fragment key={route.caption}>
+									<li role="menuitem" className={cx(styles.LinkBlock, {
+										[styles.NavMobileActive]: route.link === currentRoute
+									})}>
+										<Link href={route.link || '/'}>
+											<a className={styles.Link}>{route.caption}</a>
+										</Link>
+									</li>
+								</Fragment>
+							))}
+						</ul>
+					)}
 				</Fragment>
 			)}
     </nav>
