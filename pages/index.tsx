@@ -48,6 +48,7 @@ export default function Home() {
 										src='/instagram.png'
 										layout='fixed'
 										width='20'
+										priority={true}
 										height='20'
 										alt='Инстаграм Ильи'
 									/>
@@ -72,6 +73,7 @@ export default function Home() {
 										src='/instagram.png'
 										layout='fixed'
 										width='20'
+										priority={true}
 										height='20'
 										alt='Инстаграм Елены'
 									/>
