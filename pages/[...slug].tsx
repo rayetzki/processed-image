@@ -12,6 +12,7 @@ interface BasicPageProps {
 		width: number;
 		height: number;
 		description: string;
+		blurry: string;
 	}[];
 }
 
@@ -19,29 +20,35 @@ const BasicPage = ({
   page = 'Животные',
 	images,
 	error
-}: BasicPageProps) => !error && (
+}: BasicPageProps) => {
+	if (error) throw error;
+	return (
 		<>
-		<Head>
-			<title>Пленочная I & O</title>
-			<meta name="description" content={`${page} от I & O`} />
-		</Head>
-		<section className={css.Gallery}>
-			{images?.map(({ src, width, height }, index) => (
-				<Image
-					key={index}
-					alt={`Страница ${page} - ${index}-я картинка`} 
-					src={src}
-					width={`${width}`}
-					height={`${height}`}
-					objectFit='cover'
-					loading='lazy'
-					tabIndex={0}
-					className={`${css.ImageContainer} ${css.ImageContainer}-${index + 1}`}
-				/>
-			))}
-		</section>
-	</>
-)
+			<Head>
+				<title>Пленочная I & O</title>
+				<meta name="description" content={`${page} от I & O`} />
+			</Head>
+			<section className={css.Gallery}>
+				{images?.map(({ src, width, height, blurry }, index) => (
+					<Image
+						key={index}
+						alt={`Страница ${page} - ${index}-я картинка`} 
+						src={src}
+						width={`${width}`}
+						priority={ index <= 8 }
+						height={`${height}`}
+						objectFit='cover'
+						loading={ index > 8 ? 'lazy' : undefined }
+						placeholder='blur'
+						blurDataURL={blurry}
+						tabIndex={0}
+						className={`${css.ImageContainer} ${css.ImageContainer}-${index + 1}`}
+					/>
+				))}
+			</section>
+		</>
+	);
+}
 
 export default BasicPage;
 

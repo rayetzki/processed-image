@@ -5,12 +5,12 @@ import Navbar from './layout/Navbar'
 import { useRouter } from 'next/router'
 
 function MyApp({ Component, pageProps }: AppProps) {
-	const { pathname } = useRouter();
+	const { pathname, asPath } = useRouter();
 
   return (
     <Fragment>
       {pathname !== '/' && <Navbar />}
-      <Component {...pageProps} />
+      <Component {...pageProps} key={asPath} />
     </Fragment>
   )
 }
