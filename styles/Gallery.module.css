@@ -7,5 +7,5 @@
 
 .ImageContainer {
 	border-radius: .25em;
-	backdrop-filter: sepia(.6);
+	cursor: pointer;
 }

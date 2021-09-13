@@ -1,8 +1,10 @@
+import { useState } from "react";
 import { ResourceApiResponse } from "cloudinary";
 import { GetStaticPropsContext } from "next";
 import Image from 'next/image'; 
 import Head from "next/head";
 import css from '../styles/Gallery.module.css';
+import FullImage from "./layout/FullImage";
 
 interface BasicPageProps {
 	page: string;
@@ -13,7 +15,7 @@ interface BasicPageProps {
 		height: number;
 		description: string;
 		blurry: string;
-	}[];
+	}[] | null;
 }
 
 const BasicPage = ({
@@ -21,13 +23,23 @@ const BasicPage = ({
 	images,
 	error
 }: BasicPageProps) => {
+	const [isFullScreen, setFullScreen] = useState<{ image: string, isOpen: boolean }>({ image: '', isOpen: false });
+
 	if (error) throw error;
+
 	return (
 		<>
 			<Head>
 				<title>Пленочная I & O</title>
 				<meta name="description" content={`${page} от I & O`} />
 			</Head>
+			{isFullScreen.isOpen && isFullScreen.image && (
+				<FullImage 
+					isOpen={isFullScreen.isOpen}
+					image={isFullScreen.image}
+					setOpen={() => setFullScreen({ isOpen: false, image: '' })}
+				/>
+			)}
 			<section className={css.Gallery}>
 				{images?.map(({ src, width, height, blurry }, index) => (
 					<Image
@@ -41,6 +53,7 @@ const BasicPage = ({
 						loading={ index > 8 ? 'lazy' : undefined }
 						placeholder='blur'
 						blurDataURL={blurry}
+						onClick={() => setFullScreen({ isOpen: true, image: src })}
 						tabIndex={0}
 						className={`${css.ImageContainer} ${css.ImageContainer}-${index + 1}`}
 					/>

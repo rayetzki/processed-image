@@ -16,6 +16,8 @@ html, body {
 	--nav-mobile-expanded-border: black;
 	--nav-mobile-link-underline: indianred;
 	--nav-mobile-burger-stroke: #d3531a;
+
+	--full-image-cross-color: white;
 }
 
 a {
