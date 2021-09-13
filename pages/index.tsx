@@ -37,6 +37,7 @@ export default function Home() {
 						<Image
 							src='/i.jpg'
 							layout='responsive'
+							priority
 							width='1280'
 							height='800'
 							alt='Илья'
@@ -48,7 +49,6 @@ export default function Home() {
 										src='/instagram.png'
 										layout='fixed'
 										width='20'
-										priority={true}
 										height='20'
 										alt='Инстаграм Ильи'
 									/>
@@ -62,6 +62,7 @@ export default function Home() {
 						<Image
 							src='/o.jpg'
 							alt='Елена'
+							priority
 							width='1280'
 							height='800'
 							layout='responsive'
@@ -73,7 +74,6 @@ export default function Home() {
 										src='/instagram.png'
 										layout='fixed'
 										width='20'
-										priority={true}
 										height='20'
 										alt='Инстаграм Елены'
 									/>
