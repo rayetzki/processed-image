@@ -19,6 +19,7 @@ export default function FullImage({
 				src={image}
 				layout='fill'
 				objectFit='contain'
+				onClick={e => e.stopPropagation()}
 				className={css.FullImage}
 				alt='Картинка в полный экран'
 			/>

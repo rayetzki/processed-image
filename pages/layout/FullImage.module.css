@@ -10,11 +10,11 @@
 }
 
 .Overlay::after {
-	content: '✖';
+	content: '×';
 	z-index: 3;
+	font-size: 3em;
 	color: var(--full-image-cross-color);
 	position: absolute;
-	top: 1em;
-	right: 1em;
+	right: 1rem;
 	cursor: pointer;
 }
