@@ -9,3 +9,11 @@
 	border-radius: .25em;
 	cursor: pointer;
 }
+
+.GoUp {
+	position: fixed;
+	bottom: 24px;
+	right: 24px;
+	cursor: pointer;
+	filter: drop-shadow(var(--scroll-top-shadow)) invert(1);
+}

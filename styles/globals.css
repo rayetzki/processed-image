@@ -18,6 +18,8 @@ html, body {
 	--nav-mobile-burger-stroke: #d3531a;
 
 	--full-image-cross-color: white;
+	
+	--scroll-top-shadow: 2px 4px 6px black;
 }
 
 a {

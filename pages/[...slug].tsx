@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ResourceApiResponse } from "cloudinary";
 import { GetStaticPropsContext } from "next";
 import Image from 'next/image'; 
@@ -24,6 +24,22 @@ const BasicPage = ({
 	error
 }: BasicPageProps) => {
 	const [isFullScreen, setFullScreen] = useState<{ image: string, isOpen: boolean }>({ image: '', isOpen: false });
+	const [isScrollTopShown, setScrollTopShown] = useState<boolean>(false);
+	
+	const toggleScrollTopShow = () => {
+		if (scrollY > 100 && isScrollTopShown) return;
+		if (scrollY > 100 && !isScrollTopShown) setScrollTopShown(true)
+		else setScrollTopShown(false);
+	};
+	
+	useEffect(() => {
+		document.addEventListener('scroll', toggleScrollTopShow);
+		return () => document.removeEventListener('scroll', toggleScrollTopShow);
+	}, [scrollY]);
+
+	const handleScrollTop = () => {
+		window.scrollTo({ top: 0, behavior: 'smooth' })
+	}
 
 	if (error) throw error;
 
@@ -59,6 +75,17 @@ const BasicPage = ({
 					/>
 				))}
 			</section>
+			{isScrollTopShown && (
+				<span className={css.GoUp} onClick={ handleScrollTop } onKeyDown={ e => e.key === 'Enter' ? handleScrollTop() : null }>
+					<Image 
+						src='/upwards.svg'
+						width={64}
+						height={64}
+						alt='Наверх'
+						layout='fixed'
+					/>
+				</span>
+			)}
 		</>
 	);
 }
