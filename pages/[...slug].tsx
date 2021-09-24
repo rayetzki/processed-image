@@ -35,7 +35,7 @@ const BasicPage = ({
 	useEffect(() => {
 		document.addEventListener('scroll', toggleScrollTopShow);
 		return () => document.removeEventListener('scroll', toggleScrollTopShow);
-	}, [scrollY]);
+	}, []);
 
 	const handleScrollTop = () => {
 		window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -96,5 +96,5 @@ export async function getServerSideProps(context: GetStaticPropsContext) {
 	const folder = context.params?.slug && context.params.slug[0];
 	if (!folder) return;
 	const images: ResourceApiResponse = await fetch(`${process.env.API_URL}/api/images?folder=${folder}`).then(response => response.json());
-	return { props: { images } };
+	return { props: { images, page: folder } };
 }
