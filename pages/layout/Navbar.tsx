@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import styles from "./Navbar.module.css";
@@ -72,13 +72,23 @@ function MobileNav() {
 	const [isMobileMenuExpanded, setMobileMenuExpanded] = useState(false);
 	const { asPath: currentRoute } = useRouter();
 
+	useEffect(() => {
+		if (isMobileMenuExpanded) {
+			setTimeout(() => setMobileMenuExpanded(!isMobileMenuExpanded), 2000);
+		}
+	}, [currentRoute]);
+
+	const handleOpenMenu = () => {
+		setMobileMenuExpanded(!isMobileMenuExpanded);
+	}
+
 	return (
 		<div className={styles.NavMobileBlock}>
 			<h2 className={styles.NavMobileTitle}>Пленочная I & 0</h2>
 			<div 
-				 onKeyDown={e => e.key === 'Enter' && setMobileMenuExpanded(true)}
+				onKeyDown={e => e.key === 'Enter' ? handleOpenMenu() : null }
 				tabIndex={0} 
-				onClick={() => setMobileMenuExpanded(!isMobileMenuExpanded)} 
+				onClick={handleOpenMenu} 
 				className={cx(styles.NavMobile, {
 					[styles.NavMobileOpening]: isMobileMenuExpanded,
 				})}
