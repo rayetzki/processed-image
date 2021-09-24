@@ -70,6 +70,7 @@ const BasicPage = ({
 						placeholder='blur'
 						blurDataURL={blurry}
 						onClick={() => setFullScreen({ isOpen: true, image: src })}
+						onKeyDown={e => e.key === 'Enter' ? setFullScreen({ isOpen: true, image: src }) : null }
 						tabIndex={0}
 						className={`${css.ImageContainer} ${css.ImageContainer}-${index + 1}`}
 					/>

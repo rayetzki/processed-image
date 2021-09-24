@@ -14,7 +14,7 @@ export default function FullImage({
 	image
 }: FullImageProps) {
 	return isOpen ? (
-		<div className={css.Overlay} onClick={() => setOpen(!isOpen)}>
+		<div onKeyDown={e => e.key === 'Escape' ? setOpen(!isOpen) : null} className={css.Overlay} onClick={() => setOpen(!isOpen)}>
 			<Image 
 				src={image}
 				layout='fill'

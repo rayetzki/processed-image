@@ -98,7 +98,7 @@ function MobileNav() {
 				<span></span>
 			</div>
 			{isMobileMenuExpanded && (
-				<ul className={styles.NavMobileExpanded} onKeyDown={e => e.key === 'Escape' && setMobileMenuExpanded(false)}>
+				<ul role="menu" className={styles.NavMobileExpanded} onKeyDown={e => e.key === 'Escape' && setMobileMenuExpanded(false)}>
 					{MobileRoutes.map(route => (
 						<li key={route.caption} role="menuitem" className={cx({
 							[styles.NavMobileActive]: route.link === currentRoute
