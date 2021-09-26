@@ -7,24 +7,36 @@
 	padding: 1rem;
 }
 
+@media screen and (min-width: 768px) { 
+	.Navigation {
+		padding: 1.5rem 2rem;
+	}
+}
+
 .FirstPage {
 	position: relative;
 }
 
 .FirstPageLink {
 	position: relative;
-	top: 1em;
-	left: 1em;
+	bottom: .5em;
+	right: .5em;
 	cursor: pointer;
+	fill: var(--color);
 }
 
 .FirstPageText {
 	position: absolute;
-	font-size: 1.25em;
-	right: 1.5em;
-	bottom: -0.75em;
+	font-size: 1.5em;
+	right: .75em;
+	bottom: -.75em;
 	margin: 0;
 	width: max-content;
+}
+
+.TitleLogo {
+	display: flex;
+	align-items: center;
 }
 
 .Title {
@@ -33,15 +45,10 @@
 	align-items: center;
 }
 
-.Title::before {
-	content: '';
-	display: inline-block;
-	width: 2em;
-	height: 2em;
+.Logo {
 	margin-bottom: .5em;
 	margin-right: .5em;
-	background-image: url('../public/logo.jpg');
-	background-size: cover;
+	fill: var(--color);
 }
 
 /* Main Page Body  */
@@ -82,4 +89,8 @@
 
 .Link {
 	text-decoration: none;
+}
+
+.InstagramIcon {
+	fill: var(--color);
 }

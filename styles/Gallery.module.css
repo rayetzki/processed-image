@@ -12,8 +12,8 @@
 
 .GoUp {
 	position: fixed;
-	bottom: 24px;
-	right: 24px;
+	bottom: 1.5em;
+	right: 1.5em;
 	cursor: pointer;
 	width: inherit;
 	height: inherit;

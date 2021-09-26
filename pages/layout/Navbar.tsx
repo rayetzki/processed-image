@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import styles from "./Navbar.module.css";
 import cx from "classnames";
+import FilmRollIcon from '../../public/film-roll.svg';
 
 const SubRoutes =  [
 	{ link: "zp", caption: "Запорожье" },
@@ -42,7 +43,7 @@ function DesktopNav() {
 				<li key={route.caption} role="menuitem" className={cx(styles.LinkBlock, {
 					[styles.Active]: route.link === currentRoute
 				})}>
-					<Link href={route.link || '/'}>
+					<Link href={route.link || (route.subRoutes && route.subRoutes.length > 0 ? route.subRoutes[0].link : '/')}>
 						<a className={styles.Link} aria-haspopup={!!route.subRoutes}>
 							{route.caption}
 						</a>
@@ -84,10 +85,16 @@ function MobileNav() {
 
 	return (
 		<div className={styles.NavMobileBlock}>
-			<h2 className={styles.NavMobileTitle}>Пленочная I & 0</h2>
+			<Link href="/" passHref>
+				<span className={styles.NavMobileLogoTitle} role="menuitem">
+					<FilmRollIcon className={styles.NavMobileLogo} />
+					<h2 className={styles.NavMobileTitle}>Пленочная I & 0</h2>
+				</span>
+			</Link>
 			<div 
 				onKeyDown={e => e.key === 'Enter' ? handleOpenMenu() : null }
 				tabIndex={0} 
+				role="menuitem"
 				onClick={handleOpenMenu} 
 				className={cx(styles.NavMobile, {
 					[styles.NavMobileOpening]: isMobileMenuExpanded,

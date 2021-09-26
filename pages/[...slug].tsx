@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import React, { KeyboardEvent, useEffect, useState } from "react";
 import { ResourceApiResponse } from "cloudinary";
 import { GetStaticPropsContext } from "next";
 import Image from 'next/image'; 
 import Head from "next/head";
 import css from '../styles/Gallery.module.css';
 import FullImage from "./layout/FullImage";
+import UpwardsIcon from '../public/go-up.svg';
 
 interface BasicPageProps {
 	page: string;
@@ -77,15 +78,11 @@ const BasicPage = ({
 				))}
 			</section>
 			{isScrollTopShown && (
-				<span className={css.GoUp} onClick={ handleScrollTop } onKeyDown={ e => e.key === 'Enter' ? handleScrollTop() : null }>
-					<Image 
-						src='/upwards.svg'
-						width={64}
-						height={64}
-						alt='Наверх'
-						layout='fixed'
-					/>
-				</span>
+				<UpwardsIcon
+					onClick={ handleScrollTop } 
+					onKeyDown={ (e: KeyboardEvent<HTMLOrSVGElement>) => e.key === 'Enter' ? handleScrollTop() : null }
+					className={css.GoUp}
+				/>
 			)}
 		</>
 	);

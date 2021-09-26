@@ -4,6 +4,9 @@ import Link  from 'next/link';
 import cx from 'classnames';
 import { Fragment } from "react";
 import styles from '../styles/Home.module.css';
+import InstagramIcon from '../public/instagram.svg';
+import FilmRollIcon from '../public/film-roll.svg';
+import UpwardsIcon from '../public/upwards.svg';
 
 export default function Home() {
   return (
@@ -13,18 +16,14 @@ export default function Home() {
         <meta name="description" content="Пленочная галерея от I & O" />
       </Head>
 			<nav className={styles.Navigation}>
-				<h1 className={styles.Title}>Пленочная I & 0</h1>
+				<span className={styles.TitleLogo}>
+					<FilmRollIcon className={styles.Logo} />
+					<h1 className={styles.Title}>Пленочная I & 0</h1>
+				</span>
 				<div className={styles.FirstPage}>
 					<Link href='/animals'>
 						<a className={styles.Link}>
-							<Image 
-								title='На первую страницу'
-								src='/arrow.png'
-								width='65'
-								height='65'
-								className={styles.FirstPageLink}
-								alt='На первую страницу'
-							/>
+							<UpwardsIcon className={styles.FirstPageLink} />
 						</a>
 					</Link>
 					<p className={styles.FirstPageText}>На первую</p>
@@ -45,13 +44,7 @@ export default function Home() {
 						<div className={styles.AuthorFooter}>
 							<Link href='https://instagram.com/konfeighty'>
 								<a target="_blank" rel="noopener noreferrer" className={cx(styles.Link, styles.AuthorLink)}>
-									<Image
-										src='/instagram.png'
-										layout='fixed'
-										width='20'
-										height='20'
-										alt='Инстаграм Ильи'
-									/>
+									<InstagramIcon className={styles.InstagramIcon} />
 									<p>@rayetzki</p>
 								</a>
 							</Link>
@@ -70,13 +63,7 @@ export default function Home() {
 						<div className={styles.AuthorFooter}>
 							<Link href='https://www.instagram.com/kurai_m'>
 								<a target="_blank" rel="noopener noreferrer" className={cx(styles.Link, styles.AuthorLink)}>
-									<Image
-										src='/instagram.png'
-										layout='fixed'
-										width='20'
-										height='20'
-										alt='Инстаграм Елены'
-									/>
+									<InstagramIcon className={styles.InstagramIcon} />
 									<p>@kurai_m</p>
 								</a>
 							</Link>
