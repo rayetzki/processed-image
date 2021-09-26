@@ -15,5 +15,7 @@
 	bottom: 24px;
 	right: 24px;
 	cursor: pointer;
+	width: inherit;
+	height: inherit;
 	filter: drop-shadow(var(--scroll-top-shadow)) invert(1);
 }

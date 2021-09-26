@@ -1,25 +1,54 @@
 html, body {
+	background-color: var(--background);
+	color: var(--color);
   padding: 0;
   margin: 0;
   font-family: 'Caveat', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, cursive;
 }
 
-:root {
-  --nav-text-color: black;
-  --nav-link-hover: orange;
-  --nav-hover-border-bottom: tomato;
-  --nav-active-color: red;
-	--nav-background: white;
+@media (prefers-color-scheme: dark) {
+	:root {
+		--background: black;
+		--color: white;
 
-	--nav-mobile-expanded-shadow: black;
-	--nav-mobile-expanded-border: black;
-	--nav-mobile-link-underline: indianred;
-	--nav-mobile-burger-stroke: #d3531a;
-
-	--full-image-cross-color: white;
+		--nav-text-color: white;
+		--nav-link-hover: coral;
+		--nav-hover-border-bottom: tomato;
+		--nav-active-color: red;
+		--nav-background: black;
 	
-	--scroll-top-shadow: 2px 4px 6px black;
+		--nav-mobile-expanded-shadow: black;
+		--nav-mobile-expanded-border: black;
+		--nav-mobile-link-underline: indianred;
+		--nav-mobile-burger-stroke: #d3531a;
+	
+		--full-image-cross-color: white;
+		
+		--scroll-top-shadow: 2px 4px 6px white;
+	}
+}
+
+@media (prefers-color-scheme: light) {
+	:root {
+		--background: white;
+		--color: black;
+
+		--nav-text-color: black;
+		--nav-link-hover: orange;
+		--nav-hover-border-bottom: tomato;
+		--nav-active-color: red;
+		--nav-background: white;
+	
+		--nav-mobile-expanded-shadow: black;
+		--nav-mobile-expanded-border: black;
+		--nav-mobile-link-underline: indianred;
+		--nav-mobile-burger-stroke: #d3531a;
+	
+		--full-image-cross-color: white;
+		
+		--scroll-top-shadow: 2px 4px 6px black;
+	}
 }
 
 a {
