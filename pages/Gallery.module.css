@@ -9,7 +9,7 @@
 	border-radius: .5em;
 	display: flex;
 	cursor: pointer;
-	box-shadow: 0 5px 15px var(--gallery-image-shadow);
+	box-shadow: 0 5px 8px var(--gallery-image-shadow);
   overflow: hidden;
 }
 
