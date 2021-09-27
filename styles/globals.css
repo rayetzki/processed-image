@@ -2,6 +2,7 @@ html, body {
 	background-color: var(--background);
 	color: var(--color);
   padding: 0;
+	scroll-behavior: smooth;
   margin: 0;
   font-family: 'Caveat', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, cursive;
