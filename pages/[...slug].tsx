@@ -91,9 +91,30 @@ const BasicPage = ({
 
 export default BasicPage;
 
-export async function getServerSideProps(context: GetStaticPropsContext) {
+export async function getStaticPaths() {
+  return {
+    paths: [
+			{ params: { slug: ['animals'] } },
+      { params: { slug: ['people'] } },
+      { params: { slug: ['minimalism'] } },
+      { params: { slug: ['plants'] } },
+      { params: { slug: ['blacknwhite'] } },
+      { params: { slug: ['landscapes'] } },
+			{ params: { slug: ['zp'] } },
+			{ params: { slug: ['odessa'] } },
+			{ params: { slug: ['korosten'] } },
+			{ params: { slug: ['kharkiv'] } },
+			{ params: { slug: ['chernihiv'] } },
+			{ params: { slug: ['kyiv'] } },
+		],
+    fallback: true
+  };
+}
+
+export async function getStaticProps(context: GetStaticPropsContext) {
 	const folder = context.params?.slug && context.params.slug[0];
+	const API_URL = process.env.API_URL || "https://io-film.vercel.app";
 	if (!folder) return;
-	const images: ResourceApiResponse = await fetch(`${process.env.API_URL}/api/images?folder=${folder}`).then(response => response.json());
+	const images: ResourceApiResponse = await fetch(`${API_URL}/api/images?folder=${folder}`).then(response => response.json());
 	return { props: { images, page: folder } };
 }
