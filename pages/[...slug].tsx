@@ -59,22 +59,23 @@ const BasicPage = ({
 			)}
 			<section className={css.Gallery}>
 				{images?.map(({ src, width, height, blurry }, index) => (
-					<Image
-						key={index}
-						alt={`Страница ${page} - ${index}-я картинка`} 
-						src={src}
-						width={`${width}`}
-						priority={ index <= 8 }
-						height={`${height}`}
-						objectFit='cover'
-						loading={ index > 8 ? 'lazy' : undefined }
-						placeholder='blur'
-						blurDataURL={blurry}
-						onClick={() => setFullScreen({ isOpen: true, image: src })}
-						onKeyDown={e => e.key === 'Enter' ? setFullScreen({ isOpen: true, image: src }) : null }
-						tabIndex={0}
-						className={`${css.ImageContainer} ${css.ImageContainer}-${index + 1}`}
-					/>
+					<article key={index} className={css.ImageContainer} tabIndex={0}>
+						<Image
+							key={index}
+							alt={`Страница ${page} - ${index}-я картинка`} 
+							src={src}	
+							priority={ index <= 8 }
+							width={width}
+							height={height}
+							objectFit='cover'
+							loading={ index > 8 ? 'lazy' : undefined }
+							placeholder='blur'
+							blurDataURL={blurry}
+							onClick={() => setFullScreen({ isOpen: true, image: src })}
+							onKeyDown={e => e.key === 'Enter' ? setFullScreen({ isOpen: true, image: src }) : null }
+							tabIndex={0}
+						/>
+					</article>
 				))}
 			</section>
 			{isScrollTopShown && (
