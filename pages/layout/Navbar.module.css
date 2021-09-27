@@ -166,6 +166,7 @@
 		position: absolute;
 		right: 1.5em;
 		top: 4.5em;
+		display: grid;
 		background: var(--nav-background);
 		box-shadow: var(--nav-mobile-expanded-shadow);
 		border-top: 1px solid var(--nav-mobile-expanded-border);
@@ -175,7 +176,7 @@
 		padding: .75em;
 	}
 	
-	.NavMobileExpanded li {
+	.NavMobileExpanded [role="menuitem"] {
 		font-size: 1.25em;
 		text-decoration: underline var(--nav-mobile-link-underline);
 		margin: 0;

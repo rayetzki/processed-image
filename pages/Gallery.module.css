@@ -8,6 +8,8 @@
 .ImageContainer {
 	border-radius: .25em;
 	cursor: pointer;
+	display: contents;
+	box-shadow: 0 4px 8px 0 var(--gallery-image-shadow), 0 6px 20px 0 var(--gallery-image-shadow);
 }
 
 .GoUp {

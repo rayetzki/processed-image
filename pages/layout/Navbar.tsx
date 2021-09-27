@@ -38,7 +38,7 @@ function DesktopNav() {
   const { asPath: currentRoute } = useRouter();
 
 	return (
-		<ul className={styles.DesktopNav}>
+		<ul role="menu" className={styles.DesktopNav}>
 			{Routes.map(route => (
 				<li key={route.caption} role="menuitem" className={cx(styles.LinkBlock, {
 					[styles.Active]: route.link === currentRoute
@@ -105,17 +105,17 @@ function MobileNav() {
 				<span></span>
 			</div>
 			{isMobileMenuExpanded && (
-				<ul role="menu" className={styles.NavMobileExpanded} onKeyDown={e => e.key === 'Escape' && setMobileMenuExpanded(false)}>
+				<menu className={styles.NavMobileExpanded} onKeyDown={e => e.key === 'Escape' && setMobileMenuExpanded(false)}>
 					{MobileRoutes.map(route => (
-						<li key={route.caption} role="menuitem" className={cx({
+						<span key={route.caption} role="menuitem" className={cx({
 							[styles.NavMobileActive]: route.link === currentRoute
 						})}>
 							<Link href={route.link || '/'}>
 								<a className={styles.Link}>{route.caption}</a>
 							</Link>
-						</li>
+						</span>
 					))}
-				</ul>
+				</menu>
 			)}
 		</div>
 	)

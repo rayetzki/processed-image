@@ -2,15 +2,14 @@ import Head from "next/head";
 import Image from 'next/image';
 import Link  from 'next/link';
 import cx from 'classnames';
-import { Fragment } from "react";
-import styles from '../styles/Home.module.css';
+import styles from './Home.module.css';
 import InstagramIcon from '../public/instagram.svg';
 import FilmRollIcon from '../public/film-roll.svg';
 import UpwardsIcon from '../public/upwards.svg';
 
 export default function Home() {
   return (
-    <Fragment>
+    <main>
       <Head>
         <title>Пленочная I & O</title>
         <meta name="description" content="Пленочная галерея от I & O" />
@@ -22,7 +21,7 @@ export default function Home() {
 				</span>
 				<div className={styles.FirstPage}>
 					<Link href='/animals'>
-						<a className={styles.Link}>
+						<a aria-label="Ссылка на первую страницу" className={styles.Link}>
 							<UpwardsIcon className={styles.FirstPageLink} />
 						</a>
 					</Link>
@@ -72,6 +71,6 @@ export default function Home() {
 					</article>
 				</section>
 			</div>
-    </Fragment>
+    </main>
   );
 }

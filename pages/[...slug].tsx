@@ -3,7 +3,7 @@ import { ResourceApiResponse } from "cloudinary";
 import { GetStaticPropsContext } from "next";
 import Image from 'next/image'; 
 import Head from "next/head";
-import css from '../styles/Gallery.module.css';
+import css from './Gallery.module.css';
 import FullImage from "./layout/FullImage";
 import UpwardsIcon from '../public/go-up.svg';
 
@@ -45,7 +45,7 @@ const BasicPage = ({
 	if (error) throw error;
 
 	return (
-		<>
+		<main>
 			<Head>
 				<title>Пленочная I & O</title>
 				<meta name="description" content={`${page} от I & O`} />
@@ -84,7 +84,7 @@ const BasicPage = ({
 					className={css.GoUp}
 				/>
 			)}
-		</>
+		</main>
 	);
 }
 
