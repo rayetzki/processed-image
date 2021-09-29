@@ -1,4 +1,8 @@
-.Cities {}
+.Cities__Header {
+	text-align: center;
+	font-size: 2.5em;
+	margin: .5em 0;
+}
 
 .Stepper {
 	margin: 0;
@@ -14,7 +18,7 @@
 
 .Stepper__Content {
 	order: 1;
-	padding-bottom: 50%;
+	padding-bottom: 50vw;
 	position: relative;
 	flex: 1;
 	padding-left: 1rem;
@@ -34,7 +38,13 @@
 	top: 0;
 	height: 100%;
 	width: 2px;
-	background-color: #d3d3d3;
+	background-color: var(--stepper-separator);
+}
+
+@media (prefers-color-scheme: dark) {
+	.Stepper__Item .Stepper__Content:before {
+		box-shadow: var(--glowing-shadow);
+	}
 }
 
 /* Circle */
@@ -45,10 +55,14 @@
 	left: -12px;
 	width: 20px;
 	height: 20px;
-	background-color: #fff;
+	background-color: var(--background);
 	z-index: 1;
-	border: 2px solid #d3d3d3;
+	border: 2px solid var(--stepper-separator);
 	border-radius: 50%;
+}
+
+.Stepper__Description {
+	font-size: 1.25rem;
 }
 
 .Stepper__Time {
@@ -57,4 +71,10 @@
 	min-width: 0;
 	overflow-wrap: break-word;
 	padding-bottom: 1rem;
+}
+
+@media screen and (max-width: 425px) {
+	.Stepper__Time {
+		flex: 0 0 4rem;
+	}
 }

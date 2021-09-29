@@ -27,7 +27,9 @@ html, body {
 		--full-image-cross-color: white;
 		--gallery-image-shadow: rgb(256 256 256 / 70%);
 		
-		--scroll-top-shadow: 2px 4px 6px white;
+		--glowing-shadow: 2px 4px 6px white;
+
+		--stepper-separator: #d3d3d3;
 	}
 }
 
@@ -50,7 +52,9 @@ html, body {
 		--full-image-cross-color: white;
 		--gallery-image-shadow: rgb(0 0 0 / 70%);
 		
-		--scroll-top-shadow: 2px 4px 6px black;
+		--glowing-shadow: 2px 4px 6px black;
+
+		--stepper-separator: #d3d3d3;
 	}
 }
 

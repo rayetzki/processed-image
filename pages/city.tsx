@@ -6,42 +6,42 @@ const UkrainianCities = [
 		city: 'Карпаты',
 		route: '/carpathian',
 		id: '#carpathian',
-		description: 'Карпатские горы',
+		description: 'Горы, Воздух, Оседлость',
 		date: 'Август 2020'
 	},
 	{
 		city: 'Запорожье',
 		route: '/zp',
 		id: '#zp',
-		description: 'Промышленный город',
+		description: 'Промышленность',
 		date: '2020-',
 	},
 	{
 		city: 'Чернигов',
 		route: '/chernihiv',
 		id: '#chernihiv',
-		description: 'Уютный город для жизни',
+		description: 'Уют',
 		date: 'Июнь 2021'
 	},
 	{
 		city: 'Одесса',
 		route: '/odessa',
 		id: '#odessa',
-		description: 'Контрасты',
+		description: 'Хитрый, Южный',
 		date: 'Июнь 2020'
 	},
 	{
 		city: 'Харьков',
 		route: '/kharkiv',
 		id: '#kharkiv',
-		description: 'Интеллектуальная столица',
+		description: 'Чистота, Занятость',
 		date: 'Июнь 2020'
 	},
 	{
 		city: 'Киев',
 		route: '/kiev',
 		id: '#kiev',
-		description: 'Родной город',
+		description: 'Весь цвет большого города',
 		date: 'Июнь 2020'
 	}
 ];
@@ -56,6 +56,7 @@ const City = ({
         <meta name="description" content={`${page} от I & O`} />
       </Head>
 			<section className={css.Cities}>
+				<h1 className={css.Cities__Header}>Пешком по нашим краям</h1>
 				<ol className={css.Stepper}>
 					{UkrainianCities.map(({ city, description, date, id }) => (
 						<li id={id} key={city} className={css.Stepper__Item}>
