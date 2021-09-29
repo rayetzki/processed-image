@@ -16,6 +16,7 @@ interface BasicPageProps {
 		height: number;
 		description: string;
 		blurry: string;
+		tags: string[];
 	}[] | null;
 }
 
@@ -73,7 +74,6 @@ const BasicPage = ({
 							blurDataURL={blurry}
 							onClick={() => setFullScreen({ isOpen: true, image: src })}
 							onKeyDown={e => e.key === 'Enter' ? setFullScreen({ isOpen: true, image: src }) : null }
-							tabIndex={0}
 						/>
 					</article>
 				))}

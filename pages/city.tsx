@@ -74,3 +74,9 @@ const City = ({
 };
 
 export default City;
+
+export async function getServerSideProps() {
+	const API_URL = process.env.API_URL || "https://io-film.vercel.app";
+	const images = await fetch(`${API_URL}/api/images-by-tag?tag=cities`).then(response => response.json());
+	return { props: { images } };
+}
