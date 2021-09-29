@@ -3,7 +3,7 @@ import { ResourceApiResponse } from "cloudinary";
 import { GetStaticPropsContext } from "next";
 import Image from 'next/image'; 
 import Head from "next/head";
-import css from './Gallery.module.css';
+import css from './layout/Gallery.module.css';
 import FullImage from "./layout/FullImage";
 import UpwardsIcon from '../public/go-up.svg';
 

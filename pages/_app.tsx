@@ -6,10 +6,11 @@ import { useRouter } from 'next/router'
 
 function MyApp({ Component, pageProps }: AppProps) {
 	const { pathname, asPath } = useRouter();
+	const excludeNavbar = ['/', '/city'];
 
   return (
     <Fragment>
-      {pathname !== '/' && <Navbar />}
+      {!excludeNavbar.includes(pathname) && <Navbar />}
       <Component {...pageProps} key={asPath} />
     </Fragment>
   )

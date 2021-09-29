@@ -1,0 +1,60 @@
+.Cities {}
+
+.Stepper {
+	margin: 0;
+	padding: 2.5rem 0;
+	scroll-snap-type: y proximity;
+	scroll-behavior: smooth;
+}
+
+.Stepper__Item {
+	display: flex;
+	gap: 1.5rem;
+}
+
+.Stepper__Content {
+	order: 1;
+	padding-bottom: 50%;
+	position: relative;
+	flex: 1;
+	padding-left: 1rem;
+	scroll-snap-align: start;
+}
+
+.Stepper__Title {
+	margin: 0;
+}
+
+/* Separator */
+
+.Stepper__Item .Stepper__Content:before {
+	content: '';
+	position: absolute;
+	right: 100%;
+	top: 0;
+	height: 100%;
+	width: 2px;
+	background-color: #d3d3d3;
+}
+
+/* Circle */
+
+.Stepper__Content:after {
+	content: "";
+	position: absolute;
+	left: -12px;
+	width: 20px;
+	height: 20px;
+	background-color: #fff;
+	z-index: 1;
+	border: 2px solid #d3d3d3;
+	border-radius: 50%;
+}
+
+.Stepper__Time {
+	flex: 0 0 100px;
+	text-align: end;
+	min-width: 0;
+	overflow-wrap: break-word;
+	padding-bottom: 1rem;
+}
