@@ -15,12 +15,14 @@ export default function Home() {
         <meta name="description" content="Пленочная галерея от I & O" />
       </Head>
 			<nav className={styles.Navigation}>
-				<a className={styles.Link} href="/">
-					<span className={styles.TitleLogo}>
-						<FilmRollIcon className={styles.Logo} />
-						<h1 className={styles.Title}>Пленочная I & 0</h1>
-					</span>
-				</a>
+				<Link href='/'>
+					<a className={styles.Link}>
+						<span className={styles.TitleLogo}>
+							<FilmRollIcon className={styles.Logo} />
+							<h1 className={styles.Title}>Пленочная I & 0</h1>
+						</span>
+					</a>
+				</Link>
 				<div className={styles.NavLinks}>
 					<Link href='/animals'>
 						<a aria-label="Галерея" className={styles.NavLink}>
