@@ -3,7 +3,7 @@ import { ResourceApiResponse, v2 as cloudinary } from 'cloudinary';
 
 export default async function handler(request: NextApiRequest, response: NextApiResponse) {
 	try {
-		const desiredTag = request.query.tag as string;
+		const desiredTag = request.query?.tag as string;
 		if (!desiredTag) return response.status(400).json({ message: 'Bad Request' });
 		const { resources }: ResourceApiResponse = await cloudinary.api.resources_by_tag(desiredTag, { 
 			resource_type: 'image', 

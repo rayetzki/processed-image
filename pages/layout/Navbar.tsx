@@ -5,23 +5,13 @@ import styles from "./Navbar.module.css";
 import cx from "classnames";
 import FilmRollIcon from '../../public/film-roll.svg';
 
-const SubRoutes =  [
-	{ link: "zp", caption: "Запорожье" },
-	{ link: "odessa", caption: "Одесса" },
-	{ link: "korosten", caption: "Коростень" },
-	{ link: "kharkiv", caption: "Харьков" },
-	{ link: "chernihiv", caption: "Чернигов" },
-	{ link: "kyiv", caption: "Киев" },
-].map(({ link, caption }) => ({ link: `/${link}`, caption }));
-
 const Routes = [
   { link: "/animals", caption: "Животные" },
   { link: "/people", caption: "Люди" },
   { link: "/minimalism", caption: "Минимализм" },
   { link: "/plants", caption: "Растения" },
   { link: "/blacknwhite", caption: "Черно-Белое" },
-  { link: "/landscape", caption: "Пейзажи" },
-  { caption: "Города", subRoutes: SubRoutes }
+  { link: "/landscape", caption: "Пейзажи" }
 ];
 
 const MobileRoutes = [
@@ -31,7 +21,6 @@ const MobileRoutes = [
   { link: "/plants", caption: "Растения" },
   { link: "/blacknwhite", caption: "Черно-Белое" },
   { link: "/landscape", caption: "Пейзажи" },
-	...SubRoutes
 ];
 
 function DesktopNav() {
@@ -43,26 +32,11 @@ function DesktopNav() {
 				<li key={route.caption} role="menuitem" className={cx(styles.LinkBlock, {
 					[styles.Active]: route.link === currentRoute
 				})}>
-					<Link href={route.link || (route.subRoutes && route.subRoutes.length > 0 ? route.subRoutes[0].link : '/')}>
-						<a className={styles.Link} aria-haspopup={!!route.subRoutes}>
+					<Link href={route.link}>
+						<a className={styles.Link}>
 							{route.caption}
 						</a>
 					</Link>
-					{route.subRoutes && (
-						<menu className={styles.SubMenu}>
-							<ul className={styles.SubMenuList}>
-								{route.subRoutes.map((subRoute) => (
-									<li key={subRoute.link} className={cx(styles.LinkBlock, {
-										[styles.Active]: subRoute.link === currentRoute
-									})}>
-										<Link href={subRoute.link}>
-											<a className={styles.SubMenuLink}>{subRoute.caption}</a>
-										</Link>
-									</li>
-								))}
-							</ul>
-						</menu>
-					)}
 				</li>
 			))}
 		</ul>
@@ -107,7 +81,7 @@ function MobileNav() {
 			{isMobileMenuExpanded && (
 				<menu className={styles.NavMobileExpanded} onKeyDown={e => e.key === 'Escape' && setMobileMenuExpanded(false)}>
 					{MobileRoutes.map(route => (
-						<span key={route.caption} role="menuitem" className={cx({
+						<span key={route.caption} aria-current={route.link === currentRoute} role="menuitem" className={cx({
 							[styles.NavMobileActive]: route.link === currentRoute
 						})}>
 							<Link href={route.link || '/'}>

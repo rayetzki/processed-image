@@ -46,17 +46,15 @@ const UkrainianCities = [
 	}
 ];
 
-const City = ({
-	page = 'Города -> Запорожье'
-}) => {
+const Cities = () => {
 	return (
 		<main>
 			<Head>
         <title>Пленочная I & O</title>
-        <meta name="description" content={`${page} от I & O`} />
+        <meta name="description" content='Пешком по нашим краям от I & O' />
       </Head>
 			<section className={css.Cities}>
-				<h1 className={css.Cities__Header}>Пешком по нашим краям</h1>
+				<h1 className={css.Cities__Header}>Поездки</h1>
 				<ol className={css.Stepper}>
 					{UkrainianCities.map(({ city, description, date, id }) => (
 						<li id={id} key={city} className={css.Stepper__Item}>
@@ -73,9 +71,9 @@ const City = ({
 	);
 };
 
-export default City;
+export default Cities;
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
 	const API_URL = process.env.API_URL || "https://io-film.vercel.app";
 	const images = await fetch(`${API_URL}/api/images-by-tag?tag=cities`).then(response => response.json());
 	return { props: { images } };

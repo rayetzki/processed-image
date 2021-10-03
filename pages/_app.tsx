@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 
 function MyApp({ Component, pageProps }: AppProps) {
 	const { pathname, asPath } = useRouter();
-	const excludeNavbar = ['/', '/city'];
+	const excludeNavbar = ['/', '/travel'];
 
   return (
     <Fragment>

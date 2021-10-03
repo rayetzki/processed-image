@@ -15,17 +15,25 @@ export default function Home() {
         <meta name="description" content="Пленочная галерея от I & O" />
       </Head>
 			<nav className={styles.Navigation}>
-				<span className={styles.TitleLogo}>
-					<FilmRollIcon className={styles.Logo} />
-					<h1 className={styles.Title}>Пленочная I & 0</h1>
-				</span>
-				<div className={styles.FirstPage}>
+				<a className={styles.Link} href="/">
+					<span className={styles.TitleLogo}>
+						<FilmRollIcon className={styles.Logo} />
+						<h1 className={styles.Title}>Пленочная I & 0</h1>
+					</span>
+				</a>
+				<div className={styles.NavLinks}>
 					<Link href='/animals'>
-						<a aria-label="Ссылка на первую страницу" className={styles.Link}>
-							<UpwardsIcon className={styles.FirstPageLink} />
+						<a aria-label="Галерея" className={styles.NavLink}>
+							<p className={styles.NavLinkText}>В Галерею</p>
+							<UpwardsIcon className={styles.NavLinkIcon} />
 						</a>
 					</Link>
-					<p className={styles.FirstPageText}>На первую</p>
+					<Link href='/travel'>
+						<a aria-label="Поездки" className={styles.NavLink}>
+							<p className={styles.NavLinkText}>Поездки</p>
+							<UpwardsIcon className={styles.NavLinkIcon} />
+						</a>
+					</Link>
 				</div>
 			</nav>
 			<div className={styles.Authors}>
@@ -44,7 +52,7 @@ export default function Home() {
 							<Link href='https://instagram.com/konfeighty'>
 								<a target="_blank" rel="noopener noreferrer" className={cx(styles.Link, styles.AuthorLink)}>
 									<InstagramIcon className={styles.InstagramIcon} />
-									<p>@rayetzki</p>
+									<p>@konfeighty</p>
 								</a>
 							</Link>
 							<p className={styles.AuthorName}>Илья</p>

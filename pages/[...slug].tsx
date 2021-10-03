@@ -60,7 +60,12 @@ const BasicPage = ({
 			)}
 			<section className={css.Gallery}>
 				{images?.map(({ src, width, height, blurry }, index) => (
-					<article key={index} className={css.ImageContainer} tabIndex={0}>
+					<article 
+						key={index} 
+						className={css.ImageContainer} 
+						tabIndex={0} 
+						onClick={() => setFullScreen({ isOpen: true, image: src })}
+						onKeyDown={e => e.key === 'Enter' ? setFullScreen({ isOpen: true, image: src }) : null }>
 						<Image
 							key={index}
 							alt={`Страница ${page} - ${index}-я картинка`} 
@@ -72,8 +77,6 @@ const BasicPage = ({
 							loading={ index > 8 ? 'lazy' : undefined }
 							placeholder='blur'
 							blurDataURL={blurry}
-							onClick={() => setFullScreen({ isOpen: true, image: src })}
-							onKeyDown={e => e.key === 'Enter' ? setFullScreen({ isOpen: true, image: src }) : null }
 						/>
 					</article>
 				))}
@@ -100,12 +103,6 @@ export async function getStaticPaths() {
       { params: { slug: ['plants'] } },
       { params: { slug: ['blacknwhite'] } },
       { params: { slug: ['landscapes'] } },
-			{ params: { slug: ['zp'] } },
-			{ params: { slug: ['odessa'] } },
-			{ params: { slug: ['korosten'] } },
-			{ params: { slug: ['kharkiv'] } },
-			{ params: { slug: ['chernihiv'] } },
-			{ params: { slug: ['kyiv'] } },
 		],
     fallback: true
   };

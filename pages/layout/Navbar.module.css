@@ -19,7 +19,7 @@
 		position: relative;
 	}
 	
-	.LinkBlock, .SubMenu {
+	.LinkBlock {
 		border-radius: .5em;
 	}
 	
@@ -30,7 +30,7 @@
 		font-size: 1.5rem;
 	}
 	
-	.Link, .SubLink {
+	.Link {
 		color: var(--nav-text-color);
 	}
 	
@@ -40,49 +40,13 @@
 		width: fit-content;
 	}
 	
-	.Active .Link, .Active .SubMenuLink {
+	.Active .Link {
 		color: var(--nav-active-color);
 	}
 	
-	.Link:not(.Link[aria-haspopup="true"]):hover, .SubMenuLink:hover {
+	.Link:hover {
 		color: var(--nav-link-hover);
 		border-bottom: 1px solid var(--nav-hover-border-bottom);
-	}
-	
-	/* SubMenu */
-	.SubMenu {
-		visibility: hidden;
-		position: absolute;
-		display: flex;
-		justify-content: center;
-		background-color: var(--nav-background);
-		margin: 0;
-		z-index: 1;
-		border: 1px solid var(--nav-text-color);
-		padding: 1ch 2ch 1ch;
-		left: calc(-1rem / 2);
-	}
-	
-	.LinkBlock:hover .Link[aria-haspopup="true"] + .SubMenu,
-	.Link[aria-haspopup="true"]:focus-visible + .SubMenu {
-		visibility: visible;
-	}
-	
-	.SubMenuList {
-		margin: 0;
-		padding: 0;
-		list-style-type: none;
-	}
-	
-	.SubMenuListItem {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-	
-	.SubMenuLink {
-		font-size: 1.25rem;
-		color: var(--nav-text-color);
 	}
 }
 
@@ -164,12 +128,12 @@
 	
 	.NavMobileExpanded {
 		position: absolute;
-		right: 1.5em;
+		right: .5em;
 		top: 4.5em;
 		display: grid;
 		background: var(--nav-background);
 		box-shadow: var(--nav-mobile-expanded-shadow);
-		border-top: 1px solid var(--nav-mobile-expanded-border);
+		border: 2px dashed var(--nav-mobile-expanded-border);
 		z-index: 1;
 		list-style-type: none;
 		margin: 0;
