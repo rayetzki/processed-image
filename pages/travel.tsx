@@ -28,7 +28,7 @@ const Cities = ({ cities }: CitiesProps) => {
 			<section className={css.Cities}>
 				<h1 className={css.Cities__Header}>Поездки</h1>
 				<ol className={css.Stepper}>
-					{cities.map(({ city, short, date, id, description, images }) => (
+					{cities?.map(({ city, short, date, id, description, images }) => (
 						<li id={`#${id}`} key={city} className={css.Stepper__Item}>
 							<div className={css.Stepper__Content}>
 								<h2 className={css.Stepper__Title}>{city}</h2>
