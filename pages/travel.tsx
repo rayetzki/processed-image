@@ -1,52 +1,24 @@
+import { ResourceApiResponse } from "cloudinary";
 import Head from "next/head";
 import css from './layout/Cities.module.css';
+import Image from 'next/image';
 
-const UkrainianCities = [
-	{
-		city: 'Карпаты',
-		route: '/carpathian',
-		id: '#carpathian',
-		description: 'Горы, Воздух, Оседлость',
-		date: 'Август 2020'
-	},
-	{
-		city: 'Запорожье',
-		route: '/zp',
-		id: '#zp',
-		description: 'Промышленность',
-		date: '2020-',
-	},
-	{
-		city: 'Чернигов',
-		route: '/chernihiv',
-		id: '#chernihiv',
-		description: 'Уют',
-		date: 'Июнь 2021'
-	},
-	{
-		city: 'Одесса',
-		route: '/odessa',
-		id: '#odessa',
-		description: 'Хитрый, Южный',
-		date: 'Июнь 2020'
-	},
-	{
-		city: 'Харьков',
-		route: '/kharkiv',
-		id: '#kharkiv',
-		description: 'Чистота, Занятость',
-		date: 'Июнь 2020'
-	},
-	{
-		city: 'Киев',
-		route: '/kiev',
-		id: '#kiev',
-		description: 'Весь цвет большого города',
-		date: 'Июнь 2020'
-	}
-];
+interface City {
+	city: string;
+	route: string;
+	id: string;
+	short: string;
+	date: string;
+	description: string;
+	images: ResourceApiResponse['resources'];
+};
 
-const Cities = () => {
+interface CitiesProps {
+	cities: City[];
+}
+
+
+const Cities = ({ cities }: CitiesProps) => {
 	return (
 		<main>
 			<Head>
@@ -56,11 +28,25 @@ const Cities = () => {
 			<section className={css.Cities}>
 				<h1 className={css.Cities__Header}>Поездки</h1>
 				<ol className={css.Stepper}>
-					{UkrainianCities.map(({ city, description, date, id }) => (
-						<li id={id} key={city} className={css.Stepper__Item}>
+					{cities.map(({ city, short, date, id, description, images }) => (
+						<li id={`#${id}`} key={city} className={css.Stepper__Item}>
 							<div className={css.Stepper__Content}>
 								<h2 className={css.Stepper__Title}>{city}</h2>
+								<h3 className={css.Stepper__Short}>{short}</h3>
 								<p className={css.Stepper__Description}>{description}</p>
+								<div className={css.Stepper__Images}>
+									{images.map((image, index) => (
+										<Image
+											className={css.Stepper__Image}
+											key={image.secure_url}
+											src={image.secure_url}
+											width={300}
+											height={300}
+											objectFit='cover'
+											alt={`${index}-я картинка из города ${city}`}
+										/>
+									))}
+								</div>
 							</div>
 							<time className={css.Stepper__Time}>{date}</time>
 						</li>
@@ -75,6 +61,6 @@ export default Cities;
 
 export async function getStaticProps() {
 	const API_URL = process.env.API_URL || "https://io-film.vercel.app";
-	const images = await fetch(`${API_URL}/api/images-by-tag?tag=cities`).then(response => response.json());
-	return { props: { images } };
+	const cities = await fetch(`${API_URL}/api/images-by-tag?tag=cities`).then(response => response.json());
+	return { props: { cities } };
 }

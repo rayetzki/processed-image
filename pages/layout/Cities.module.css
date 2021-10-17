@@ -6,7 +6,7 @@
 
 .Stepper {
 	margin: 0;
-	padding: 2.5rem 0;
+	padding: 1rem 0;
 	scroll-snap-type: y proximity;
 	scroll-behavior: smooth;
 }
@@ -18,7 +18,7 @@
 
 .Stepper__Content {
 	order: 1;
-	padding-bottom: 50vw;
+	padding-bottom: 10vw;
 	position: relative;
 	flex: 1;
 	padding-left: 1rem;
@@ -61,7 +61,7 @@
 	border-radius: 50%;
 }
 
-.Stepper__Description {
+.Stepper__Short {
 	font-size: 1.25rem;
 }
 
@@ -71,6 +71,25 @@
 	min-width: 0;
 	overflow-wrap: break-word;
 	padding-bottom: 1rem;
+}
+
+.Stepper__Description {
+	max-width: 90%;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.Stepper__Images {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1em;
+	max-width: 100%;
+}
+
+.Stepper__Image {
+	border-radius: .25em;
 }
 
 @media screen and (max-width: 425px) {
