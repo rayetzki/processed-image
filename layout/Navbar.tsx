@@ -60,15 +60,15 @@ function MobileNav() {
 	return (
 		<div className={styles.NavMobileBlock}>
 			<Link href="/" passHref>
-				<span className={styles.NavMobileLogoTitle} role="menuitem">
+				<span className={styles.NavMobileLogoTitle} aria-label="Логотип">
 					<FilmRollIcon className={styles.NavMobileLogo} />
 					<h2 className={styles.NavMobileTitle}>Пленочная I & 0</h2>
 				</span>
 			</Link>
-			<div 
+			<button
+				aria-label="Кнопка навигации"
 				onKeyDown={e => e.key === 'Enter' ? handleOpenMenu() : null }
 				tabIndex={0} 
-				role="menuitem"
 				onClick={handleOpenMenu} 
 				className={cx(styles.NavMobile, {
 					[styles.NavMobileOpening]: isMobileMenuExpanded,
@@ -77,7 +77,7 @@ function MobileNav() {
 				<span></span>
 				<span></span>
 				<span></span>
-			</div>
+			</button>
 			{isMobileMenuExpanded && (
 				<menu className={styles.NavMobileExpanded} onKeyDown={e => e.key === 'Escape' && setMobileMenuExpanded(false)}>
 					{MobileRoutes.map(route => (

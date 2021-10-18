@@ -1,6 +1,8 @@
 import Head from "next/head";
 import css from '../layout/Cities.module.css';
 import Image from 'next/image';
+import Link from 'next/link';
+import BackArrow from '../public/upwards.svg';
 import type { City } from '../types';
 
 interface CitiesProps {
@@ -15,7 +17,12 @@ const Cities = ({ cities }: CitiesProps) => (
 			<meta name="description" content='Пешком по нашим краям от I & O' />
 		</Head>
 		<section className={css.Cities}>
-			<h1 className={css.Cities__Header}>Поездки</h1>
+			<div className={css.Cities__Head}>
+				<Link href='/' passHref>
+					<BackArrow className={css.Cities__Back} aria-label="На главную" />
+				</Link>
+				<h1 className={css.Cities__Header}>Поездки</h1>
+			</div>
 			<ol className={css.Stepper}>
 				{cities?.map(({ city, short, date, id, description, images }) => (
 					<li id={`#${id}`} key={city} className={css.Stepper__Item}>
