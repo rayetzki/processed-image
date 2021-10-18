@@ -2,7 +2,7 @@ import Head from "next/head";
 import Image from 'next/image';
 import Link  from 'next/link';
 import cx from 'classnames';
-import styles from './layout/Home.module.css';
+import styles from '../layout/Home.module.css';
 import InstagramIcon from '../public/instagram.svg';
 import FilmRollIcon from '../public/film-roll.svg';
 import UpwardsIcon from '../public/upwards.svg';

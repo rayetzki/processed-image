@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import styles from "./Navbar.module.css";
 import cx from "classnames";
-import FilmRollIcon from '../../public/film-roll.svg';
+import FilmRollIcon from '../public/film-roll.svg';
 
 const Routes = [
   { link: "/animals", caption: "Животные" },

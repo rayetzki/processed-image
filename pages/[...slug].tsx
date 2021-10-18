@@ -1,23 +1,17 @@
 import React, { KeyboardEvent, useEffect, useState } from "react";
-import { ResourceApiResponse } from "cloudinary";
-import { GetStaticPropsContext } from "next";
+import type { ResourceApiResponse } from "cloudinary";
+import type { GetStaticPropsContext } from "next";
+import type { Img } from '../types';
 import Image from 'next/image'; 
 import Head from "next/head";
-import css from './layout/Gallery.module.css';
-import FullImage from "./layout/FullImage";
+import css from '../layout/Gallery.module.css';
+import FullImage from "../layout/FullImage";
 import UpwardsIcon from '../public/go-up.svg';
 
 interface BasicPageProps {
 	page: string;
 	error: unknown;
-	images: {
-		src: string;
-		width: number;
-		height: number;
-		description: string;
-		blurry: string;
-		tags: string[];
-	}[] | null;
+	images: Img[] | null;
 }
 
 const BasicPage = ({
