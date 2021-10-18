@@ -59,11 +59,13 @@ function MobileNav() {
 
 	return (
 		<div className={styles.NavMobileBlock}>
-			<Link href="/" passHref>
-				<span className={styles.NavMobileLogoTitle} aria-label="Логотип">
-					<FilmRollIcon className={styles.NavMobileLogo} />
-					<h2 className={styles.NavMobileTitle}>Пленочная I & 0</h2>
-				</span>
+			<Link href="/">
+				<a>
+					<span className={styles.NavMobileLogoTitle} aria-label="Логотип">
+						<FilmRollIcon className={styles.NavMobileLogo} />
+						<h2 className={styles.NavMobileTitle}>Пленочная I & 0</h2>
+					</span>
+				</a>
 			</Link>
 			<button
 				aria-label="Кнопка навигации"

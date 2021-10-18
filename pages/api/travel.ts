@@ -67,7 +67,7 @@ export default async function handler(request: NextApiRequest, response: NextApi
 			response.status(200).json(
 				JSON.stringify(UkrainianCities.map(city => ({
 					...city,
-					images: resources.filter(image => image.tags.includes(city.id)).slice(0, 6),
+					images: resources.filter(image => image.tags.includes(city.id)),
 				}))
 			));
 		} else response.status(400).json({ message: 'No images found' });

@@ -1,7 +1,7 @@
 
+import React, { useEffect } from 'react';
 import css from './FullImage.module.css';
 import Image from 'next/image';
-import React, { useEffect } from 'react';
 
 interface FullImageProps {
 	image: string;
@@ -9,11 +9,7 @@ interface FullImageProps {
 	setOpen: (newValue: boolean) => void;
 }
 
-export default function FullImage({
-	isOpen,
-	setOpen,
-	image
-}: FullImageProps) {
+export default function FullImage({ isOpen, setOpen, image }: FullImageProps) {
 	const closeOnKeyDown = (event: KeyboardEvent) => {
 		if (event.key === 'Escape') setOpen(!isOpen);
 	};
@@ -21,7 +17,8 @@ export default function FullImage({
 	useEffect(() => {
 		window.addEventListener('keydown', closeOnKeyDown);
 		return () => window.removeEventListener('keydown', closeOnKeyDown);
-	}, [])
+	}, []);
+
 	return isOpen ? (
 		<div className={css.Overlay} onClick={() => setOpen(!isOpen)}>
 			<Image 

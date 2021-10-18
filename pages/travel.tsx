@@ -9,7 +9,6 @@ interface CitiesProps {
 	cities: City[];
 }
 
-
 const Cities = ({ cities }: CitiesProps) => (
 	<main>
 		<Head>
@@ -18,8 +17,10 @@ const Cities = ({ cities }: CitiesProps) => (
 		</Head>
 		<section className={css.Cities}>
 			<div className={css.Cities__Head}>
-				<Link href='/' passHref>
-					<BackArrow className={css.Cities__Back} aria-label="На главную" />
+				<Link href='/'>
+					<a aria-label="На главную">
+						<BackArrow className={css.Cities__Back} />
+					</a>
 				</Link>
 				<h1 className={css.Cities__Header}>Поездки</h1>
 			</div>
@@ -31,11 +32,12 @@ const Cities = ({ cities }: CitiesProps) => (
 							<h3 className={css.Stepper__Short}>{short}</h3>
 							<p className={css.Stepper__Description}>{description}</p>
 							<div className={css.Stepper__Images}>
-								{images?.map((image, index) => (
+								{images?.slice(0, 6).map((image, index) => (
 									<Image
 										className={css.Stepper__Image}
 										key={image.secure_url}
 										src={image.secure_url}
+										layout='intrinsic'
 										width={300}
 										height={300}
 										objectFit='cover'

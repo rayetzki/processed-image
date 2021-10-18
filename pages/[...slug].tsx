@@ -31,11 +31,9 @@ const BasicPage = ({
 	useEffect(() => {
 		document.addEventListener('scroll', toggleScrollTopShow);
 		return () => document.removeEventListener('scroll', toggleScrollTopShow);
-	}, []);
+	}, [toggleScrollTopShow]);
 
-	const handleScrollTop = () => {
-		window.scrollTo({ top: 0, behavior: 'smooth' })
-	}
+	const handleScrollTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
 	if (error) throw error;
 

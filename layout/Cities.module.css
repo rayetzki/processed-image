@@ -9,6 +9,7 @@
 	transform: rotate(270deg);
 	position: absolute;
 	left: 2em;
+	cursor: pointer;
 }
 
 .Stepper {
@@ -82,8 +83,12 @@
 
 .Stepper__Description {
 	max-width: 90%;
+	display: -moz-box;
 	display: -webkit-box;
 	-webkit-line-clamp: 3;
+	line-clamp: 3;
+	-moz-line-clamp: 3;
+	-moz-box-orient: vertical;
 	-webkit-box-orient: vertical;
 	overflow: hidden;
 }
@@ -100,7 +105,29 @@
 }
 
 @media screen and (max-width: 425px) {
+	.Cities__Header {
+		font-size: 1.5em;
+	}
+	
+	.Cities__Back {
+		width: 2rem;
+		height: 2rem;
+	}
+
+	.Stepper__Title {
+		font-size: 1.2em;
+	}
+
+	.Stepper__Short {
+		font-size: 1em;
+	}
+
+	.Stepper__Description {
+		font-size: .8em;
+	}
+
 	.Stepper__Time {
-		flex: 0 0 4rem;
+		flex: 0 0 3rem;
+		font-size: .8em;
 	}
 }
