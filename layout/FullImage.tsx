@@ -1,17 +1,31 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import css from './FullImage.module.css';
 import Image from 'next/image';
+import type { FullScreenView } from '../types';
 
-interface FullImageProps {
-	image: string;
-	isOpen: boolean;
+interface FullImageProps extends FullScreenView {
 	setOpen: (newValue: boolean) => void;
 }
 
-export default function FullImage({ isOpen, setOpen, image }: FullImageProps) {
+export default function FullImage({ isOpen, setOpen, image, images }: FullImageProps) {
+	const [currentlyViewed, setCurrentlyViewed] = useState(image);
+
 	const closeOnKeyDown = (event: KeyboardEvent) => {
 		if (event.key === 'Escape') setOpen(!isOpen);
+	};
+
+	const switchNextImage = (type: 'left' | 'right') => {
+		if (!images?.length) return;
+		const currentlyViewedIndex = images.findIndex(i => i === currentlyViewed);
+		
+		if (type === 'left') {
+			if (currentlyViewedIndex === 0) return;
+			setCurrentlyViewed(images[currentlyViewedIndex - 1]);
+		} else if (type === 'right') {
+			if (currentlyViewedIndex === images.length) return;
+			setCurrentlyViewed(images[currentlyViewedIndex + 1]);
+		}
 	};
 
 	useEffect(() => {
@@ -22,7 +36,7 @@ export default function FullImage({ isOpen, setOpen, image }: FullImageProps) {
 	return isOpen ? (
 		<div className={css.Overlay} onClick={() => setOpen(!isOpen)}>
 			<Image 
-				src={image}
+				src={currentlyViewed}
 				layout='fill'
 				objectFit='contain'
 				onClick={e => e.stopPropagation()}

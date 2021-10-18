@@ -1,7 +1,7 @@
 import React, { KeyboardEvent, useEffect, useState } from "react";
 import type { ResourceApiResponse } from "cloudinary";
 import type { GetStaticPropsContext } from "next";
-import type { Img } from '../types';
+import type { Img, FullScreenView } from '../types';
 import Image from 'next/image'; 
 import Head from "next/head";
 import css from '../layout/Gallery.module.css';
@@ -19,7 +19,7 @@ const BasicPage = ({
 	images,
 	error
 }: BasicPageProps) => {
-	const [isFullScreen, setFullScreen] = useState<{ image: string, isOpen: boolean }>({ image: '', isOpen: false });
+	const [isFullScreen, setFullScreen] = useState<FullScreenView>({ image: '', isOpen: false });
 	const [isScrollTopShown, setScrollTopShown] = useState<boolean>(false);
 	
 	const toggleScrollTopShow = () => {

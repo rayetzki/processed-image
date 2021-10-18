@@ -18,3 +18,9 @@ export interface Img {
 	blurry: string;
 	tags: string[];
 };
+
+export interface FullScreenView { 
+	image: string;
+	images?: string[];
+	isOpen: boolean;
+};
