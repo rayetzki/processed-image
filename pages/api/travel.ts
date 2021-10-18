@@ -64,10 +64,12 @@ export default async function handler(request: NextApiRequest, response: NextApi
 			max_results: 200,
 		});
 		if (resources.length > 0) {
-			response.status(200).json(UkrainianCities.map(city => ({
-				...city,
-				images: resources.filter(image => image.tags.includes(city.id)).slice(0, 6),
-			})));
+			response.status(200).json(
+				JSON.stringify(UkrainianCities.map(city => ({
+					...city,
+					images: resources.filter(image => image.tags.includes(city.id)).slice(0, 6),
+				}))
+			));
 		} else response.status(400).json({ message: 'No images found' });
 	} catch (error) {
 		response.status(500).json({ message: 'Something went wrong' });

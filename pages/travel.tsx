@@ -45,7 +45,7 @@ const Cities = ({ cities }: CitiesProps) => (
 	</main>
 );
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
 	const API_URL = process.env.API_URL || "https://io-film.vercel.app";
 	const cities: CitiesProps['cities'] = await fetch(`${API_URL}/api/travel?tag=cities`).then(response => response.json());
 	return { props: { cities } };
