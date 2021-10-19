@@ -103,6 +103,7 @@
 
 .Stepper__Image {
 	border-radius: .25em;
+	cursor: pointer;
 }
 
 @media screen and (max-width: 425px) {

@@ -50,6 +50,7 @@ const Cities = ({ cities }: CitiesProps) => {
 											layout='intrinsic'
 											width={300}
 											height={300}
+											onContextMenu={e => e.preventDefault()}
 											objectFit='cover'
 											alt={`${index}-я картинка из города ${city}`}
 										/>

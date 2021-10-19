@@ -73,7 +73,7 @@ export default function FullImage({ isOpen, setOpen, image, images }: FullImageP
 			<button 
 				onClick={e => switchNextImage('left', e)} 
 				className={cx(css.Overlay__Arrows, {
-					[css.ArrowHidden]: images && images.length > 0
+					[css.ArrowHidden]: !images
 				})}>
 				<BackArrow className={css.ArrowBack} width={36} height={36} />
 			</button>
@@ -82,6 +82,7 @@ export default function FullImage({ isOpen, setOpen, image, images }: FullImageP
 				layout='fill'
 				objectFit='contain'
 				onClick={e => e.stopPropagation()}
+				onContextMenu={e => e.preventDefault()}
 				className={css.FullImage}
 				alt='Картинка в полный экран'
 				{ ...(images && images.length && bind()) }
@@ -89,7 +90,7 @@ export default function FullImage({ isOpen, setOpen, image, images }: FullImageP
 			<button
 				onClick={e => switchNextImage('right', e)} 
 				className={cx(css.Overlay__Arrows, {
-					[css.ArrowHidden]: images && images.length > 0
+					[css.ArrowHidden]: !images
 				})}>
 				<BackArrow className={css.ArrowForward} width={36} height={36} />
 			</button>
