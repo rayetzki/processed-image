@@ -1,4 +1,6 @@
 .Overlay {
+	display: flex;
+	justify-content: space-between;
 	position: fixed;
 	overflow: hidden;
 	top: 0;
@@ -18,4 +20,27 @@
 	position: absolute;
 	right: 1rem;
 	cursor: pointer;
+}
+
+.Overlay__Arrows {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 50%;
+	transform: translateY(calc(50% - 3em));
+	fill: var(--background);
+	border: none;
+	background: none;
+	margin: 3em .5em 0;
+	cursor: pointer;
+	z-index: 3;
+}
+
+.ArrowBack {
+	transform: rotate(180deg);
+}
+
+.ArrowHidden {
+	visibility: hidden;
 }

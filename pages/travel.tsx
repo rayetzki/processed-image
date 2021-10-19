@@ -63,7 +63,9 @@ const Cities = ({ cities }: CitiesProps) => {
 			</section>
 			{Object.keys(isFullScreen).every(key => key.length > 0) && isFullScreen.images && isFullScreen.images.length > 0 && (
 				<FullImage 
-					{ ...isFullScreen }
+					image={ isFullScreen.image }
+					images={ isFullScreen.images }
+					isOpen={ isFullScreen.isOpen } 
 					setOpen={() => setFullScreen({ image: '', images: [], isOpen: false })}
 				/>
 			)}
