@@ -73,7 +73,7 @@ export default function FullImage({ isOpen, setOpen, image, images }: FullImageP
 			<button 
 				onClick={e => switchNextImage('left', e)} 
 				className={cx(css.Overlay__Arrows, {
-					[css.ArrowHidden]: images && images.length > 0 && viewed.index - 1 <= 0
+					[css.ArrowHidden]: images && images.length > 0
 				})}>
 				<BackArrow className={css.ArrowBack} width={36} height={36} />
 			</button>
@@ -89,7 +89,7 @@ export default function FullImage({ isOpen, setOpen, image, images }: FullImageP
 			<button
 				onClick={e => switchNextImage('right', e)} 
 				className={cx(css.Overlay__Arrows, {
-					[css.ArrowHidden]: images && images.length > 0 && viewed.index + 1 >= images.length
+					[css.ArrowHidden]: images && images.length > 0
 				})}>
 				<BackArrow className={css.ArrowForward} width={36} height={36} />
 			</button>
