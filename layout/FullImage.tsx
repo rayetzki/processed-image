@@ -18,7 +18,7 @@ function useSwipe(
     onLeft: () => {},
     onRight: () => {}
   },
-  threshold = 0.8
+  threshold = 0.3
 ) {
   return useDrag(({ last, vxvy: [vx, vy] }) => {
     if (Math.abs(vx) > Math.abs(vy)) {
@@ -37,7 +37,6 @@ function useSwipe(
   });
 }
 
-
 export default function FullImage({ isOpen, setOpen, image, images }: FullImageProps) {
 	const [viewed, setViewed] = useState({ image, index: images?.findIndex(i => i === image) || 0 });
 
@@ -50,7 +49,7 @@ export default function FullImage({ isOpen, setOpen, image, images }: FullImageP
 		if (!images?.length) return;
 		const nextIndex = (
 			type === 'left' && viewed.index - 1 <= 0 ? images.length - 1 : 
-			type === 'right' && viewed.index + 1 >= images.length ? 0 :
+			type === 'right' && viewed.index + 1 >= images.length ? viewed.index + 1 :
 			type === 'right' ? viewed.index + 1 :
 			type === 'left' ? viewed.index - 1 : viewed.index
 		);
@@ -85,7 +84,7 @@ export default function FullImage({ isOpen, setOpen, image, images }: FullImageP
 				onClick={e => e.stopPropagation()}
 				className={css.FullImage}
 				alt='Картинка в полный экран'
-				{ ...bind() }
+				{ ...(images && images.length && bind()) }
 			/>
 			<button
 				onClick={e => switchNextImage('right', e)} 
