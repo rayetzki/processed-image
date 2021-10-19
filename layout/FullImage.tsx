@@ -18,7 +18,7 @@ function useSwipe(
     onLeft: () => {},
     onRight: () => {}
   },
-  threshold = 0.3
+  threshold = 0.5
 ) {
   return useDrag(({ last, vxvy: [vx, vy] }) => {
     if (Math.abs(vx) > Math.abs(vy)) {
