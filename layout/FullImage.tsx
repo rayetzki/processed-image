@@ -49,7 +49,7 @@ export default function FullImage({ isOpen, setOpen, image, images }: FullImageP
 		if (!images?.length) return;
 		const nextIndex = (
 			type === 'left' && viewed.index - 1 <= 0 ? images.length - 1 : 
-			type === 'right' && viewed.index + 1 >= images.length ? viewed.index + 1 :
+			type === 'right' && viewed.index + 1 >= images.length - 1 ? 0 :
 			type === 'right' ? viewed.index + 1 :
 			type === 'left' ? viewed.index - 1 : viewed.index
 		);
