@@ -2,6 +2,7 @@
 import React, { MouseEvent, useEffect, useState } from 'react';
 import css from './FullImage.module.css';
 import Image from 'next/image';
+import { useDrag } from 'react-use-gesture';
 import type { FullScreenView } from '../types';
 import BackArrow from '../public/upwards.svg'; 
 import cx from 'classnames';
@@ -10,24 +11,58 @@ interface FullImageProps extends FullScreenView {
 	setOpen: (newValue: boolean) => void;
 }
 
+function useSwipe(
+  actions = {
+    onUp: () => {},
+    onDown: () => {},
+    onLeft: () => {},
+    onRight: () => {}
+  },
+  threshold = 0.8
+) {
+  return useDrag(({ last, vxvy: [vx, vy] }) => {
+    if (Math.abs(vx) > Math.abs(vy)) {
+      if (vx < -threshold && last) {
+        actions.onLeft();
+      } else if (vx > threshold && last) {
+        actions.onRight();
+      }
+    } else {
+      if (vy < -threshold && last) {
+        actions.onUp();
+      } else if (vy > threshold && last) {
+        actions.onDown();
+      }
+    }
+  });
+}
+
+
 export default function FullImage({ isOpen, setOpen, image, images }: FullImageProps) {
 	const [viewed, setViewed] = useState({ image, index: images?.findIndex(i => i === image) || 0 });
-	console.log({ viewed, images })
 
 	const closeOnKeyDown = (event: KeyboardEvent) => {
 		if (event.key === 'Escape') setOpen(!isOpen);
 	};
 
-	const switchNextImage = (e: MouseEvent<HTMLButtonElement>, type: 'left' | 'right') => {
-		e.stopPropagation();
+	const switchNextImage = (type: 'left' | 'right', e?: MouseEvent<HTMLButtonElement>) => {
+		e?.stopPropagation();
 		if (!images?.length) return;
-		const nextIndex = type === 'left' ? viewed.index - 1 : viewed.index + 1; 
-		if (
-			type === 'left' && nextIndex < 0 || 
-			type === 'right' && nextIndex > images.length
-		) return;
+		const nextIndex = (
+			type === 'left' && viewed.index - 1 <= 0 ? images.length - 1 : 
+			type === 'right' && viewed.index + 1 >= images.length ? 0 :
+			type === 'right' ? viewed.index + 1 :
+			type === 'left' ? viewed.index - 1 : viewed.index
+		);
 		setViewed({ image: images[nextIndex], index: nextIndex });
 	};
+
+	const bind = useSwipe({ 
+		onLeft: () => switchNextImage('right'), 
+		onRight: () => switchNextImage('left'),
+		onUp: () => {},
+		onDown: () => {}
+	});
 
 	useEffect(() => {
 		window.addEventListener('keydown', closeOnKeyDown);
@@ -37,7 +72,7 @@ export default function FullImage({ isOpen, setOpen, image, images }: FullImageP
 	return isOpen ? (
 		<div className={css.Overlay} onClick={() => setOpen(!isOpen)}>
 			<button 
-				onClick={e => switchNextImage(e, 'left')} 
+				onClick={e => switchNextImage('left', e)} 
 				className={cx(css.Overlay__Arrows, {
 					[css.ArrowHidden]: images && images.length > 0 && viewed.index - 1 <= 0
 				})}>
@@ -50,9 +85,10 @@ export default function FullImage({ isOpen, setOpen, image, images }: FullImageP
 				onClick={e => e.stopPropagation()}
 				className={css.FullImage}
 				alt='Картинка в полный экран'
+				{ ...bind() }
 			/>
 			<button
-				onClick={e => switchNextImage(e, 'right')} 
+				onClick={e => switchNextImage('right', e)} 
 				className={cx(css.Overlay__Arrows, {
 					[css.ArrowHidden]: images && images.length > 0 && viewed.index + 1 >= images.length
 				})}>
