@@ -53,8 +53,6 @@ export default function FullImage({ isOpen, setOpen, image, images }: FullImageP
 	const { bind } = useSwipe({ 
 		onLeft: () => switchNextImage('right'), 
 		onRight: () => switchNextImage('left'),
-		onUp: () => {},
-		onDown: () => {}
 	});
 
 	useEffect(() => {
