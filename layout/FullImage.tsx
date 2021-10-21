@@ -13,31 +13,20 @@ interface FullImageProps extends FullScreenView {
 
 function useSwipe(
   actions = {
-    onUp: () => {},
-    onDown: () => {},
     onLeft: () => {},
     onRight: () => {}
   },
-  threshold = 0.5
+  threshold = 0.3
 ) {
 	const coords = useRef<{ x: number, y: number }>();
-	
   const bind = useDrag(({ xy: [vx, vy], last }) => {
-		coords.current = { x: vx, y: vy };
-    if (Math.abs(vx) > Math.abs(vy)) {
-      if (vx < -threshold && last) {
-        actions.onLeft();
-      } else if (vx > threshold && last) {
-        actions.onRight();
-      }
-    } else {
-      if (vy < -threshold && last) {
-        actions.onUp();
-      } else if (vy > threshold && last) {
-        actions.onDown();
-      }
-    }
-  });
+		coords.current = { x: Math.abs(vx), y: Math.abs(vy) };
+		if (screen.availWidth - vx / 100 < -threshold && last) {
+			actions.onLeft();
+		} else if (screen.availWidth - vx / 100 > threshold && last) {
+			actions.onRight();
+		}
+	});
 	
 	return { bind, coords };
 }
