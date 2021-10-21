@@ -1,8 +1,8 @@
 
-import React, { MouseEvent, useEffect, useState } from 'react';
+import React, { MouseEvent, useEffect, useRef, useState } from 'react';
 import css from './FullImage.module.css';
 import Image from 'next/image';
-import { useDrag } from 'react-use-gesture';
+import { useDrag } from '@use-gesture/react';
 import type { FullScreenView } from '../types';
 import BackArrow from '../public/upwards.svg'; 
 import cx from 'classnames';
@@ -20,7 +20,10 @@ function useSwipe(
   },
   threshold = 0.5
 ) {
-  return useDrag(({ last, vxvy: [vx, vy] }) => {
+	const coords = useRef<{ x: number, y: number }>();
+	
+  const bind = useDrag(({ xy: [vx, vy], last }) => {
+		coords.current = { x: vx, y: vy };
     if (Math.abs(vx) > Math.abs(vy)) {
       if (vx < -threshold && last) {
         actions.onLeft();
@@ -35,6 +38,8 @@ function useSwipe(
       }
     }
   });
+	
+	return { bind, coords };
 }
 
 export default function FullImage({ isOpen, setOpen, image, images }: FullImageProps) {
@@ -56,7 +61,7 @@ export default function FullImage({ isOpen, setOpen, image, images }: FullImageP
 		setViewed({ image: images[nextIndex], index: nextIndex });
 	};
 
-	const bind = useSwipe({ 
+	const { bind } = useSwipe({ 
 		onLeft: () => switchNextImage('right'), 
 		onRight: () => switchNextImage('left'),
 		onUp: () => {},
