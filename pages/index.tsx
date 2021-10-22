@@ -44,11 +44,12 @@ export default function Home() {
 					<article className={styles.Author}>
 						<Image
 							src='/i.jpg'
-							layout='responsive'
-							priority
-							width='1280'
-							height='800'
 							alt='Илья'
+							priority
+							width='1200'
+							height='800'
+							layout='responsive'
+							objectFit='cover'
 						/>
 						<div className={styles.AuthorFooter}>
 							<Link href='https://instagram.com/konfeighty'>
@@ -65,9 +66,10 @@ export default function Home() {
 							src='/o.jpg'
 							alt='Елена'
 							priority
-							width='1280'
+							width='1200'
 							height='800'
 							layout='responsive'
+							objectFit='cover'
 						/>
 						<div className={styles.AuthorFooter}>
 							<Link href='https://www.instagram.com/kurai_m'>
