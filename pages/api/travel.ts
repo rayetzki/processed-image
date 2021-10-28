@@ -5,21 +5,19 @@ const Dummy = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin po
 
 export default async function handler(request: NextApiRequest, response: NextApiResponse) {
 	const UkrainianCities = [
-		// {
-		// 	city: 'Карпаты',
-		// 	route: '/carpathian',
-		// 	id: 'carpathian',
-		// 	short: 'Горы, Воздух, Оседлость',
-		// 	date: 'Август 2020',
-		// 	description: Dummy
-		// },
+		{
+			city: 'Карпаты',
+			route: '/carpathian',
+			id: 'carpathian',
+			short: 'Горы, Воздух, Оседлость',
+			date: 'Август 2020',
+		},
 		{
 			city: 'Запорожье',
 			route: '/zp',
 			id: 'zp',
 			short: 'Промышленность',
 			date: '2020-',
-			description: Dummy
 		},
 		{
 			city: 'Чернигов',
@@ -27,7 +25,6 @@ export default async function handler(request: NextApiRequest, response: NextApi
 			id: 'chernihiv',
 			short: 'Уют',
 			date: 'Июнь 2021',
-			description: Dummy
 		},
 		{
 			city: 'Одесса',
@@ -35,7 +32,6 @@ export default async function handler(request: NextApiRequest, response: NextApi
 			id: 'odessa',
 			short: 'Хитрый, Южный',
 			date: 'Июнь 2020',
-			description: Dummy
 		},
 		{
 			city: 'Харьков',
@@ -43,7 +39,6 @@ export default async function handler(request: NextApiRequest, response: NextApi
 			id: 'kharkiv',
 			short: 'Чистота, Занятость',
 			date: 'Июнь 2020',
-			description: Dummy
 		},
 		{
 			city: 'Киев',
@@ -51,7 +46,6 @@ export default async function handler(request: NextApiRequest, response: NextApi
 			id: 'kyiv',
 			short: 'Весь цвет большого города',
 			date: 'Июнь 2020',
-			description: Dummy
 		}
 	];
 	const desiredTag = request.query?.tag as string | undefined;
@@ -67,6 +61,7 @@ export default async function handler(request: NextApiRequest, response: NextApi
 			response.status(200).json(
 				JSON.stringify(UkrainianCities.map(city => ({
 					...city,
+					description: Dummy,
 					images: resources.filter(image => image.tags.includes(city.id)),
 				}))
 			));
