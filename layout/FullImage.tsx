@@ -1,5 +1,5 @@
 
-import React, { MouseEvent, useEffect, useRef, useState } from 'react';
+import { MouseEvent, useEffect, useRef, useState } from 'react';
 import css from './FullImage.module.css';
 import Image from 'next/image';
 import { useDrag } from '@use-gesture/react';

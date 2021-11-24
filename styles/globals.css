@@ -29,6 +29,7 @@ html, body {
 		--glowing-shadow: 2px 4px 6px white;
 
 		--stepper-separator: #d3d3d3;
+		--stepper-description-hovered: lightgray;
 	}
 }
 
@@ -54,6 +55,7 @@ html, body {
 		--glowing-shadow: 2px 4px 6px black;
 
 		--stepper-separator: #d3d3d3;
+		--stepper-description-hovered: slategray;
 	}
 }
 

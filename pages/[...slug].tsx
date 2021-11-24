@@ -1,4 +1,4 @@
-import React, { KeyboardEvent, useEffect, useState } from "react";
+import { KeyboardEvent, useEffect, useState } from "react";
 import type { ResourceApiResponse } from "cloudinary";
 import type { GetStaticPropsContext } from "next";
 import type { Img, FullScreenView } from '../types';

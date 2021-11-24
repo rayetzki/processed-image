@@ -20,92 +20,6 @@
 	scroll-behavior: smooth;
 }
 
-.Stepper__Item {
-	display: flex;
-	gap: 1.5rem;
-}
-
-.Stepper__Content {
-	order: 1;
-	padding-bottom: 10vw;
-	position: relative;
-	flex: 1;
-	padding-left: 1rem;
-	scroll-snap-align: start;
-}
-
-.Stepper__Title {
-	margin: 0;
-}
-
-/* Separator */
-
-.Stepper__Item .Stepper__Content:before {
-	content: '';
-	position: absolute;
-	right: 100%;
-	top: 0;
-	height: 100%;
-	width: 2px;
-	background-color: var(--stepper-separator);
-}
-
-@media (prefers-color-scheme: dark) {
-	.Stepper__Item .Stepper__Content:before {
-		box-shadow: var(--glowing-shadow);
-	}
-}
-
-/* Circle */
-
-.Stepper__Content:after {
-	content: "";
-	position: absolute;
-	left: -12px;
-	width: 20px;
-	height: 20px;
-	background-color: var(--background);
-	z-index: 1;
-	border: 2px solid var(--stepper-separator);
-	border-radius: 50%;
-}
-
-.Stepper__Short {
-	font-size: 1.25rem;
-}
-
-.Stepper__Time {
-	flex: 0 0 100px;
-	text-align: end;
-	min-width: 0;
-	overflow-wrap: break-word;
-	padding-bottom: 1rem;
-}
-
-.Stepper__Description {
-	max-width: 90%;
-	display: -moz-box;
-	display: -webkit-box;
-	-webkit-line-clamp: 3;
-	line-clamp: 3;
-	-moz-line-clamp: 3;
-	-moz-box-orient: vertical;
-	-webkit-box-orient: vertical;
-	overflow: hidden;
-}
-
-.Stepper__Images {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 1em;
-	max-width: 100%;
-}
-
-.Stepper__Image {
-	border-radius: .25em;
-	cursor: pointer;
-}
-
 @media screen and (max-width: 425px) {
 	.Cities__Header {
 		font-size: 1.5em;
@@ -114,22 +28,5 @@
 	.Cities__Back {
 		width: 2rem;
 		height: 2rem;
-	}
-
-	.Stepper__Title {
-		font-size: 1.2em;
-	}
-
-	.Stepper__Short {
-		font-size: 1em;
-	}
-
-	.Stepper__Description {
-		font-size: .8em;
-	}
-
-	.Stepper__Time {
-		flex: 0 0 3rem;
-		font-size: .8em;
 	}
 }
