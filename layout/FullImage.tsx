@@ -17,12 +17,8 @@ function useSwipe(
     onRight: () => {}
   },
 	threshold = 0.5
-) {
-	const coords = useRef<{ x: number, y: number }>();
-  
+) {  
 	const bind = useDrag(({ xy: [vx, vy], dragging }) => {
-		coords.current = { x: Math.abs(vx), y: Math.abs(vy) };
-
 		if (vx < screen.availWidth * threshold && !dragging) {
 			actions.onLeft();
 		} else if (vx >= screen.availWidth * threshold && !dragging) {
@@ -30,7 +26,7 @@ function useSwipe(
 		}
 	}, { axis: 'x' });
 	
-	return { bind, coords };
+	return { bind };
 }
 
 export default function FullImage({ isOpen, setOpen, image, images }: FullImageProps) {
