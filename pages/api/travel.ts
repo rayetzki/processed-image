@@ -51,7 +51,7 @@ const UkrainianCities = [
 export default async function handler(request: NextApiRequest, response: NextApiResponse) {
 	const { tag } = request.query;
 	
-	if (!tag) return response.status(400).json({ message: 'Bad Request' });
+	if (!tag || Array.isArray(tag)) return response.status(400).json({ message: 'Bad Request' });
 
 	try {
 		const { resources }: ResourceApiResponse = await cloudinary.api.resources_by_tag(tag, { 

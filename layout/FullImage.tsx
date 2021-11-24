@@ -16,17 +16,19 @@ function useSwipe(
     onLeft: () => {},
     onRight: () => {}
   },
-  threshold = 0.3
+	threshold = 0.5
 ) {
 	const coords = useRef<{ x: number, y: number }>();
-  const bind = useDrag(({ xy: [vx, vy], last }) => {
+  
+	const bind = useDrag(({ xy: [vx, vy], dragging }) => {
 		coords.current = { x: Math.abs(vx), y: Math.abs(vy) };
-		if (screen.availWidth - vx / 100 < -threshold && last) {
+
+		if (vx < screen.availWidth * threshold && !dragging) {
 			actions.onLeft();
-		} else if (screen.availWidth - vx / 100 > threshold && last) {
+		} else if (vx >= screen.availWidth * threshold && !dragging) {
 			actions.onRight();
 		}
-	});
+	}, { axis: 'x' });
 	
 	return { bind, coords };
 }
