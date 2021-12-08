@@ -1,8 +1,8 @@
 
-import { MouseEvent, useEffect, useRef, useState } from 'react';
+import { MouseEvent, useEffect, useState } from 'react';
 import css from './FullImage.module.css';
 import Image from 'next/image';
-import { useDrag } from '@use-gesture/react';
+import { SwipeDirections, SwipeEventData, useSwipeable } from 'react-swipeable';
 import type { FullScreenView } from '../types';
 import BackArrow from '../public/upwards.svg'; 
 import cx from 'classnames';
@@ -11,32 +11,15 @@ interface FullImageProps extends FullScreenView {
 	setOpen: (newValue: boolean) => void;
 }
 
-function useSwipe(
-  actions = {
-    onLeft: () => {},
-    onRight: () => {}
-  },
-	threshold = 0.5
-) {  
-	const bind = useDrag(({ xy: [vx, vy], dragging }) => {
-		if (vx < screen.availWidth * threshold && !dragging) {
-			actions.onLeft();
-		} else if (vx >= screen.availWidth * threshold && !dragging) {
-			actions.onRight();
-		}
-	}, { axis: 'x' });
-	
-	return { bind };
-}
-
 export default function FullImage({ isOpen, setOpen, image, images }: FullImageProps) {
 	const [viewed, setViewed] = useState({ image, index: images?.findIndex(i => i === image) || 0 });
+	const [swiping, setSwiping] = useState<number>();
 
-	const closeOnKeyDown = (event: KeyboardEvent) => {
+	function closeOnKeyDown(event: KeyboardEvent) {
 		if (event.key === 'Escape') setOpen(!isOpen);
 	};
 
-	const switchNextImage = (type: 'left' | 'right', e?: MouseEvent<HTMLButtonElement>) => {
+	function switchNextImage(type: 'left' | 'right', e?: MouseEvent<HTMLButtonElement>) {
 		e?.stopPropagation();
 		if (!images?.length) return;
 		const nextIndex = (
@@ -46,11 +29,15 @@ export default function FullImage({ isOpen, setOpen, image, images }: FullImageP
 			type === 'left' ? viewed.index - 1 : viewed.index
 		);
 		setViewed({ image: images[nextIndex], index: nextIndex });
+		requestAnimationFrame(() => setSwiping(0));
 	};
 
-	const { bind } = useSwipe({ 
-		onLeft: () => switchNextImage('right'), 
-		onRight: () => switchNextImage('left'),
+	const handlers = useSwipeable({
+		onSwipedLeft: () => switchNextImage('left'),
+		onSwipedRight: () => switchNextImage('right'),
+		onSwiping: e => setSwiping(e.deltaX),
+		preventDefaultTouchmoveEvent: false,
+		delta: 5
 	});
 
 	useEffect(() => {
@@ -67,16 +54,16 @@ export default function FullImage({ isOpen, setOpen, image, images }: FullImageP
 				})}>
 				<BackArrow className={css.ArrowBack} width={36} height={36} />
 			</button>
-			<Image 
-				src={viewed.image}
-				layout='fill'
-				objectFit='contain'
-				onClick={e => e.stopPropagation()}
-				onContextMenu={e => e.preventDefault()}
-				className={css.FullImage}
-				alt='Картинка в полный экран'
-				{ ...(images && images.length && bind()) }
-			/>
+			<div style={{transform: `translateX(${swiping}px)`}} className={css.FullImage} {...handlers}>
+				<Image 
+					src={viewed.image}
+					layout='fill'
+					objectFit='contain'
+					onClick={e => e.stopPropagation()}
+					onContextMenu={e => e.preventDefault()}
+					alt='Картинка в полный экран'
+				/>
+			</div>
 			<button
 				onClick={e => switchNextImage('right', e)} 
 				className={cx(css.Overlay__Arrows, {

@@ -23,7 +23,28 @@
 }
 
 .FullImage {
+	position: relative;
+	width: 100vw;
+	height: 100vh;
 	touch-action: none;
+}
+
+.SlideImageLeft {
+	animation: slideLeft 0.5s ease-in;
+}
+
+.SlideImageRight {
+	animation: slideRight 0.5s ease-in;
+}
+
+@keyframes slideLeft {
+	50% { left: 0; }
+	100% { left: -100vw; }
+}
+
+@keyframes slideRight {
+	50% { right: 0; }
+	100% { right: -100vw; }
 }
 
 @media screen and (min-width: 768px) {
