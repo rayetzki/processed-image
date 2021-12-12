@@ -6,45 +6,45 @@ const Dummy = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin po
 const UkrainianCities = [
 	{
 		city: 'Карпаты',
-		route: '/carpathian',
 		id: 'carpathian',
 		short: 'Горы, Воздух, Оседлость',
 		date: 'Август 2020',
 	},
 	{
 		city: 'Запорожье',
-		route: '/zp',
 		id: 'zp',
 		short: 'Промышленность',
 		date: '2020-',
 	},
 	{
 		city: 'Чернигов',
-		route: '/chernihiv',
 		id: 'chernihiv',
 		short: 'Уют',
 		date: 'Июнь 2021',
 	},
 	{
 		city: 'Одесса',
-		route: '/odessa',
 		id: 'odessa',
 		short: 'Хитрый, Южный',
 		date: 'Июнь 2020',
 	},
 	{
 		city: 'Харьков',
-		route: '/kharkiv',
 		id: 'kharkiv',
 		short: 'Чистота, Занятость',
 		date: 'Июнь 2020',
 	},
 	{
 		city: 'Киев',
-		route: '/kyiv',
 		id: 'kyiv',
 		short: 'Весь цвет большого города',
 		date: 'Июнь 2020',
+	},
+	{
+		city: 'Днепр',
+		id: 'dnieper',
+		short: 'Низ Днепра. Перспектива',
+		date: 'Август 2021',
 	}
 ];
 

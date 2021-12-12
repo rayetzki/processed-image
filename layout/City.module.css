@@ -63,15 +63,16 @@
 .Stepper__Description {
 	cursor: pointer;
 	position: relative;
-	max-width: 90%;
+	max-width: 75vw;
 	display: -moz-box;
 	display: -webkit-box;
-	-webkit-line-clamp: 3;
 	line-clamp: 3;
+	-webkit-line-clamp: 3;
 	-moz-line-clamp: 3;
 	-moz-box-orient: vertical;
 	-webkit-box-orient: vertical;
 	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .Stepper__Description:hover {
@@ -79,9 +80,9 @@
 }
 
 .Stepper__Description_Expanded {
-	-webkit-line-clamp: 10;
-	line-clamp: 10;
-	-moz-line-clamp: 10;
+	line-clamp: 100;
+	-webkit-line-clamp: 100;
+	-moz-line-clamp: 100;
 }
 
 .Stepper__Images {
