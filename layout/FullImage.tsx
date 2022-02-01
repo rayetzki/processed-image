@@ -1,11 +1,17 @@
 
-import { MouseEvent, useEffect, useState } from 'react';
+import React, { MouseEvent, useEffect, useState } from 'react';
 import css from './FullImage.module.css';
 import Image from 'next/image';
-import { SwipeDirections, SwipeEventData, useSwipeable } from 'react-swipeable';
+import { useSwipeable } from 'react-swipeable';
+import cx from 'classnames';
 import type { FullScreenView } from '../types';
 import BackArrow from '../public/upwards.svg'; 
-import cx from 'classnames';
+
+enum ControlKeys {
+	LEFT = 'ArrowLeft',
+	RIGHT = 'ArrowRight',
+	CLOSE = 'Escape',
+};
 
 interface FullImageProps extends FullScreenView {
 	setOpen: (newValue: boolean) => void;
@@ -15,8 +21,14 @@ export default function FullImage({ isOpen, setOpen, image, images }: FullImageP
 	const [viewed, setViewed] = useState({ image, index: images?.findIndex(i => i === image) || 0 });
 	const [swiping, setSwiping] = useState<number>();
 
-	function closeOnKeyDown(event: KeyboardEvent) {
-		if (event.key === 'Escape') setOpen(!isOpen);
+	function handleArrowKeys(e: KeyboardEvent) {
+		if (e.key === ControlKeys.CLOSE) {
+			setOpen(!isOpen);
+		} else if (e.key === ControlKeys.LEFT) {
+			switchNextImage('left');
+		} else if (e.key === ControlKeys.RIGHT) {
+			switchNextImage('right');
+		}
 	};
 
 	function switchNextImage(type: 'left' | 'right', e?: MouseEvent<HTMLButtonElement>) {
@@ -29,8 +41,13 @@ export default function FullImage({ isOpen, setOpen, image, images }: FullImageP
 			type === 'left' ? viewed.index - 1 : viewed.index
 		);
 		setViewed({ image: images[nextIndex], index: nextIndex });
-		requestAnimationFrame(() => setSwiping(0));
+		if (swiping) requestAnimationFrame(() => setSwiping(0));
 	};
+
+	React.useEffect(() => {
+		window.addEventListener('keyup', handleArrowKeys);
+		return () => window.removeEventListener('keyup', handleArrowKeys);
+	}, [viewed]);
 
 	const handlers = useSwipeable({
 		onSwipedLeft: () => switchNextImage('left'),
@@ -39,11 +56,6 @@ export default function FullImage({ isOpen, setOpen, image, images }: FullImageP
 		preventDefaultTouchmoveEvent: false,
 		delta: 5
 	});
-
-	useEffect(() => {
-		window.addEventListener('keydown', closeOnKeyDown);
-		return () => window.removeEventListener('keydown', closeOnKeyDown);
-	}, []);
 
 	return isOpen ? (
 		<div className={css.Overlay} onClick={() => setOpen(!isOpen)}>

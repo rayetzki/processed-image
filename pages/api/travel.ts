@@ -55,7 +55,7 @@ export default async function handler(request: NextApiRequest, response: NextApi
 
 	try {
 		const { resources }: ResourceApiResponse = await cloudinary.api.resources_by_tag(tag, { 
-			resource_type: 'image', 
+			resource_type: 'image',
 			keep_original: true,
 			tags: true,
 			max_results: 200,
