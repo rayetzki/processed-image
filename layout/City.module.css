@@ -62,8 +62,9 @@
 
 .Stepper__Description {
 	cursor: pointer;
+	font-size: 1.1em;
 	position: relative;
-	max-width: 75vw;
+	max-width: 70vw;
 	display: -moz-box;
 	display: -webkit-box;
 	line-clamp: 3;

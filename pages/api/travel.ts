@@ -1,52 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { ResourceApiResponse, v2 as cloudinary } from 'cloudinary';
-
-const Dummy = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin porta lacus at turpis posuere, sit amet dictum elit volutpat. Maecenas vitae tortor sed massa suscipit vehicula. Nam venenatis, eros volutpat iaculis sodales, purus neque varius tortor, quis tempor dui lectus pretium erat. Phasellus in faucibus justo. Phasellus eget gravida mauris, at egestas tellus. Vivamus convallis maximus aliquet. Etiam cursus neque lectus, porta venenatis eros consectetur eget. Sed varius arcu at porta pulvinar. Duis in vehicula metus. Donec et ullamcorper velit. Integer vel blandit odio, id pretium neque. Maecenas lacus quam, consequat sed enim quis, viverra eleifend elit. Nulla facilisi. Pellentesque porta congue ornare.';
-
-const UkrainianCities = [
-	{
-		city: 'Карпаты',
-		id: 'carpathian',
-		short: 'Горы, Воздух, Оседлость',
-		date: 'Август 2020',
-	},
-	{
-		city: 'Запорожье',
-		id: 'zp',
-		short: 'Промышленность',
-		date: '2020-',
-	},
-	{
-		city: 'Чернигов',
-		id: 'chernihiv',
-		short: 'Уют',
-		date: 'Июнь 2021',
-	},
-	{
-		city: 'Одесса',
-		id: 'odessa',
-		short: 'Хитрый, Южный',
-		date: 'Июнь 2020',
-	},
-	{
-		city: 'Харьков',
-		id: 'kharkiv',
-		short: 'Чистота, Занятость',
-		date: 'Июнь 2020',
-	},
-	{
-		city: 'Киев',
-		id: 'kyiv',
-		short: 'Весь цвет большого города',
-		date: 'Июнь 2020',
-	},
-	{
-		city: 'Днепр',
-		id: 'dnieper',
-		short: 'Низ Днепра. Перспектива',
-		date: 'Август 2021',
-	}
-];
+import info from './cities.json';
 
 export default async function handler(request: NextApiRequest, response: NextApiResponse) {
 	const { tag } = request.query;
@@ -63,9 +17,8 @@ export default async function handler(request: NextApiRequest, response: NextApi
 
 		if (resources.length > 0) {
 			response.status(200).json(
-				JSON.stringify(UkrainianCities.map(city => ({
+				JSON.stringify(info.cities.map(city => ({
 					...city,
-					description: Dummy,
 					images: resources.filter(image => image.tags.includes(city.id)),
 				}))
 			));
