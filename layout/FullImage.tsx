@@ -57,7 +57,7 @@ export default function FullImage({ isOpen, setOpen, image, images }: FullImageP
 		delta: 5
 	});
 
-	return isOpen && (
+	return isOpen ? (
 		<div className={css.Overlay} onClick={() => setOpen(!isOpen)}>
 			<button 
 				onClick={e => switchNextImage('left', e)} 
@@ -84,5 +84,5 @@ export default function FullImage({ isOpen, setOpen, image, images }: FullImageP
 				<BackArrow className={css.ArrowForward} width={36} height={36} />
 			</button>
 		</div>
-	);
+	) : null;
 }
