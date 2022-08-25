@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Image from "next/image";
-import { City, FullScreenView } from "../types";
+import { type City, type FullScreenView } from "../types";
 import cx from 'classnames';
 import css from "./City.module.css";
 
@@ -19,6 +19,14 @@ export function City({
 }: CityProps) {
 	const [isExpanded, setExpanded] = useState(false);
 	
+	function expandImage(image: City['images'][0]) {
+		setFullScreen({
+			image: image.secure_url,
+			images: images.map(i => i.secure_url),
+			isOpen: true,
+		});
+	};
+	
 	return (
 		<li id={`#${id}`} key={city} className={css.Stepper__Item}>
 			<div className={css.Stepper__Content}>
@@ -35,13 +43,7 @@ export function City({
 							className={css.Stepper__Image}
 							key={image.secure_url}
 							src={image.secure_url}
-							onClick={() =>
-								setFullScreen({
-									image: image.secure_url,
-									images: images.map(i => i.secure_url),
-									isOpen: true,
-								})
-							}
+							onClick={() => expandImage(image)}
 							loading="lazy"
 							layout="intrinsic"
 							width={300}

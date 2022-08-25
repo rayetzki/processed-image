@@ -1,5 +1,5 @@
 
-import React, { MouseEvent, useEffect, useState } from 'react';
+import React, { MouseEvent, useState } from 'react';
 import css from './FullImage.module.css';
 import Image from 'next/image';
 import { useSwipeable } from 'react-swipeable';
@@ -21,17 +21,7 @@ export default function FullImage({ isOpen, setOpen, image, images }: FullImageP
 	const [viewed, setViewed] = useState({ image, index: images?.findIndex(i => i === image) || 0 });
 	const [swiping, setSwiping] = useState<number>();
 
-	function handleArrowKeys(e: KeyboardEvent) {
-		if (e.key === ControlKeys.CLOSE) {
-			setOpen(!isOpen);
-		} else if (e.key === ControlKeys.LEFT) {
-			switchNextImage('left');
-		} else if (e.key === ControlKeys.RIGHT) {
-			switchNextImage('right');
-		}
-	};
-
-	function switchNextImage(type: 'left' | 'right', e?: MouseEvent<HTMLButtonElement>) {
+	const switchNextImage = React.useCallback((type: 'left' | 'right', e?: MouseEvent<HTMLButtonElement>) => {
 		e?.stopPropagation();
 		if (!images?.length) return;
 		const nextIndex = (
@@ -42,12 +32,22 @@ export default function FullImage({ isOpen, setOpen, image, images }: FullImageP
 		);
 		setViewed({ image: images[nextIndex], index: nextIndex });
 		if (swiping) requestAnimationFrame(() => setSwiping(0));
-	};
+	}, [images, swiping, viewed.index]);
+
+	const handleArrowKeys = React.useCallback((e: KeyboardEvent) => {
+		if (e.key === ControlKeys.CLOSE) {
+			setOpen(!isOpen);
+		} else if (e.key === ControlKeys.LEFT) {
+			switchNextImage('left');
+		} else if (e.key === ControlKeys.RIGHT) {
+			switchNextImage('right');
+		}
+	}, [switchNextImage, setOpen, isOpen]);
 
 	React.useEffect(() => {
 		window.addEventListener('keyup', handleArrowKeys);
 		return () => window.removeEventListener('keyup', handleArrowKeys);
-	}, [viewed]);
+	}, [viewed, handleArrowKeys]);
 
 	const handlers = useSwipeable({
 		onSwipedLeft: () => switchNextImage('left'),
@@ -57,7 +57,7 @@ export default function FullImage({ isOpen, setOpen, image, images }: FullImageP
 		delta: 5
 	});
 
-	return isOpen ? (
+	return isOpen && (
 		<div className={css.Overlay} onClick={() => setOpen(!isOpen)}>
 			<button 
 				onClick={e => switchNextImage('left', e)} 
@@ -84,5 +84,5 @@ export default function FullImage({ isOpen, setOpen, image, images }: FullImageP
 				<BackArrow className={css.ArrowForward} width={36} height={36} />
 			</button>
 		</div>
-	) : null;
+	);
 }

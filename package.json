@@ -1,6 +1,6 @@
 {
   "name": "film-gallery",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -10,19 +10,19 @@
   },
   "dependencies": {
     "classnames": "^2.3.1",
-    "cloudinary": "^1.26.3",
-    "next": "^12.1.0",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
+    "cloudinary": "^1.30.1",
+    "next": "^12.2.5",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "react-swipeable": "^6.2.0"
   },
   "devDependencies": {
     "@svgr/webpack": "^5.5.0",
     "@types/classnames": "^2.3.1",
     "@types/node": "^16.11.1",
-    "@types/react": "17.0.14",
+    "@types/react": "^17.0.14",
     "eslint": "^8.3.0",
     "eslint-config-next": "11.0.1",
-    "typescript": "^4.5.2"
+    "typescript": "^4.7.4"
   }
 }
