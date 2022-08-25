@@ -1,11 +1,11 @@
 import { KeyboardEvent, useEffect, useState } from "react";
+import { Gallery, Item } from 'react-photoswipe-gallery';
 import type { ResourceApiResponse } from "cloudinary";
 import type { GetStaticPropsContext } from "next";
-import type { Img, FullScreenView } from '../types';
+import type { Img } from '../types';
 import Image from 'next/image'; 
 import Head from "next/head";
 import css from '../layout/Gallery.module.css';
-import FullImage from "../layout/FullImage";
 import UpwardsIcon from '../public/go-up.svg';
 
 interface BasicPageProps {
@@ -19,7 +19,6 @@ const BasicPage = ({
 	images,
 	error
 }: BasicPageProps) => {
-	const [isFullScreen, setFullScreen] = useState<FullScreenView>({ image: '', isOpen: false });
 	const [isScrollTopShown, setScrollTopShown] = useState<boolean>(false);
 	
 	const toggleScrollTopShow = () => {
@@ -43,36 +42,39 @@ const BasicPage = ({
 				<title>Пленочная I & O</title>
 				<meta name="description" content={`${page} от I & O`} />
 			</Head>
-			{isFullScreen.isOpen && isFullScreen.image && (
-				<FullImage 
-					isOpen={isFullScreen.isOpen}
-					image={isFullScreen.image}
-					setOpen={() => setFullScreen({ isOpen: false, image: '' })}
-				/>
-			)}
-			<section className={css.Gallery}>
-				{images?.map(({ src, width, height, blurry }, index) => (
-					<article 
-						key={index} 
-						className={css.ImageContainer} 
-						tabIndex={0} 
-						onClick={() => setFullScreen({ isOpen: true, image: src })}
-						onKeyDown={e => e.key === 'Enter' ? setFullScreen({ isOpen: true, image: src }) : null }>
-						<Image
+			<Gallery>
+				<section className={css.Gallery}>
+					{images?.map(({ src, width, height, blurry }, index) => (
+						<Item 
 							key={index}
-							alt={`Страница ${page} - ${index}-я картинка`} 
-							src={src}	
-							priority={ index <= 8 }
 							width={width}
-							height={height}
-							objectFit='cover'
-							loading={ index > 8 ? 'lazy' : undefined }
-							placeholder='blur'
-							blurDataURL={blurry}
-						/>
-					</article>
-				))}
-			</section>
+							original={src}
+							alt={`Страница ${page} - ${index}-я картинка`}
+							height={height}>
+							{({ ref, open }) => (
+								<article 
+									ref={ref}
+									className={css.ImageContainer} 
+									tabIndex={0} 
+									onClick={open}>
+									<Image
+										key={index}
+										width={width}
+										height={height}
+										alt={`Страница ${page} - ${index}-я картинка`} 
+										src={src}	
+										priority={ index <= 8 }
+										objectFit='cover'
+										loading={ index > 8 ? 'lazy' : undefined }
+										placeholder='blur'
+										blurDataURL={blurry}
+									/>
+								</article>
+							)}
+						</Item>
+					))}
+				</section>
+			</Gallery>
 			{isScrollTopShown && (
 				<UpwardsIcon
 					onClick={ handleScrollTop } 

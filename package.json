@@ -12,8 +12,10 @@
     "classnames": "^2.3.1",
     "cloudinary": "^1.30.1",
     "next": "^12.2.5",
+    "photoswipe": "^5.3.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-photoswipe-gallery": "^2.2.1",
     "react-swipeable": "^6.2.0"
   },
   "devDependencies": {

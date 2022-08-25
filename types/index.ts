@@ -8,6 +8,7 @@ export interface City {
 	date: string;
 	description: string;
 	images: ResourceApiResponse['resources'];
+	open(e: React.MouseEvent<HTMLImageElement>): void;
 };
 
 export interface Img {
@@ -17,10 +18,4 @@ export interface Img {
 	description: string;
 	blurry: string;
 	tags: string[];
-};
-
-export interface FullScreenView { 
-	image: string;
-	images?: string[];
-	isOpen: boolean;
 };

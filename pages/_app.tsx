@@ -1,4 +1,5 @@
 import '../styles/globals.css'
+import 'photoswipe/dist/photoswipe.css'
 import type { AppProps } from 'next/app'
 import Navbar from '../layout/Navbar'
 import { useRouter } from 'next/router'

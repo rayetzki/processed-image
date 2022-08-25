@@ -1,12 +1,9 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
-import { type City, type FullScreenView } from "../types";
+import { Item } from "react-photoswipe-gallery";
+import { type City } from "../types";
 import cx from 'classnames';
 import css from "./City.module.css";
-
-interface CityProps extends City {
-	setFullScreen: (view: FullScreenView) => void;
-}
 
 export function City({
 	city,
@@ -14,18 +11,9 @@ export function City({
 	date,
 	id,
 	description,
-	images,
-	setFullScreen,
-}: CityProps) {
+	images
+}: City) {
 	const [isExpanded, setExpanded] = useState(false);
-	
-	function expandImage(image: City['images'][0]) {
-		setFullScreen({
-			image: image.secure_url,
-			images: images.map(i => i.secure_url),
-			isOpen: true,
-		});
-	};
 	
 	return (
 		<li id={`#${id}`} key={city} className={css.Stepper__Item}>
@@ -39,19 +27,30 @@ export function City({
 				</p>
 				<div className={css.Stepper__Images}>
 					{images?.slice(0, 6).map((image, index) => (
-						<Image
-							className={css.Stepper__Image}
-							key={image.secure_url}
-							src={image.secure_url}
-							onClick={() => expandImage(image)}
-							loading="lazy"
-							layout="intrinsic"
-							width={300}
-							height={300}
-							onContextMenu={e => e.preventDefault()}
-							objectFit="cover"
+						<Item 
+							key={image.secure_url} 
 							alt={`${index}-я картинка из города ${city}`}
-						/>
+							width={image.width} 
+							height={image.height} 
+							original={image.secure_url}>
+							{({ open, ref }) => (
+								<div 
+									onClick={open} 
+									ref={ref as React.MutableRefObject<HTMLDivElement>}>
+									<Image
+										className={css.Stepper__Image}
+										src={image.secure_url}
+										loading="lazy"
+										layout="intrinsic"
+										width={300}
+										height={300}
+										onContextMenu={e => e.preventDefault()}
+										objectFit="cover"
+										alt={`${index}-я картинка из города ${city}`}
+									/>
+								</div>
+							)}
+						</Item>
 					))}
 				</div>
 			</div>
