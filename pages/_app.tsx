@@ -1,18 +1,13 @@
 import '../styles/globals.css'
 import 'photoswipe/dist/photoswipe.css'
-import type { AppProps } from 'next/app'
-import Navbar from '../layout/Navbar'
+import { type AppProps } from 'next/app'
 import { useRouter } from 'next/router'
 
 function MyApp({ Component, pageProps }: AppProps) {
-	const { pathname, asPath } = useRouter();
-	const excludeNavbar = ['/', '/travel'];
+	const { asPath } = useRouter();
 
   return (
-    <>
-      {!excludeNavbar.includes(pathname) && <Navbar />}
-      <Component {...pageProps} key={asPath} />
-    </>
+    <Component {...pageProps} key={asPath} />
   )
 }
 

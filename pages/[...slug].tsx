@@ -1,12 +1,14 @@
-import { KeyboardEvent, useEffect, useState } from "react";
+import { KeyboardEvent, useCallback, useEffect, useState } from "react";
 import { Gallery, Item } from 'react-photoswipe-gallery';
-import type { ResourceApiResponse } from "cloudinary";
-import type { GetStaticPropsContext } from "next";
-import type { Img } from '../types';
+import { type ResourceApiResponse } from "cloudinary";
+import { type GetStaticPropsContext } from "next";
+import { type Img } from '../types';
 import Image from 'next/image'; 
 import Head from "next/head";
 import css from '../layout/Gallery.module.css';
 import UpwardsIcon from '../public/go-up.svg';
+import Navbar from "../layout/Navbar";
+import { Grid } from "../layout/Gallery";
 
 interface BasicPageProps {
 	page: string;
@@ -14,25 +16,27 @@ interface BasicPageProps {
 	images: Img[] | null;
 }
 
-const BasicPage = ({
+export default function BasicPage({
   page = 'Животные',
 	images,
 	error
-}: BasicPageProps) => {
+}: BasicPageProps) {
 	const [isScrollTopShown, setScrollTopShown] = useState<boolean>(false);
 	
-	const toggleScrollTopShow = () => {
+	const toggleScrollTopShow = useCallback(() => {
 		if (scrollY > 100 && isScrollTopShown) return;
 		if (scrollY > 100 && !isScrollTopShown) setScrollTopShown(true)
 		else setScrollTopShown(false);
-	};
+	}, [isScrollTopShown]);
 	
 	useEffect(() => {
 		document.addEventListener('scroll', toggleScrollTopShow);
 		return () => document.removeEventListener('scroll', toggleScrollTopShow);
 	}, [toggleScrollTopShow]);
 
-	const handleScrollTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+	const handleScrollTop = useCallback(() => {
+		window.scrollTo({ top: 0, behavior: 'smooth' });
+	}, []);
 
 	if (error) throw error;
 
@@ -42,8 +46,10 @@ const BasicPage = ({
 				<title>Пленочная I & O</title>
 				<meta name="description" content={`${page} от I & O`} />
 			</Head>
+			
+			<Navbar />
 			<Gallery>
-				<section className={css.Gallery}>
+				<Grid>
 					{images?.map(({ src, width, height, blurry }, index) => (
 						<Item 
 							key={index}
@@ -63,9 +69,9 @@ const BasicPage = ({
 										height={height}
 										alt={`Страница ${page} - ${index}-я картинка`} 
 										src={src}	
-										priority={ index <= 8 }
+										priority={index <= 8}
 										objectFit='cover'
-										loading={ index > 8 ? 'lazy' : undefined }
+										loading={index > 8 ? 'lazy' : undefined}
 										placeholder='blur'
 										blurDataURL={blurry}
 									/>
@@ -73,20 +79,18 @@ const BasicPage = ({
 							)}
 						</Item>
 					))}
-				</section>
+				</Grid>
 			</Gallery>
 			{isScrollTopShown && (
 				<UpwardsIcon
-					onClick={ handleScrollTop } 
-					onKeyDown={ (e: KeyboardEvent<HTMLOrSVGElement>) => e.key === 'Enter' ? handleScrollTop() : null }
+					onClick={handleScrollTop} 
+					onKeyDown={(e: KeyboardEvent<HTMLOrSVGElement>) => e.key === 'Enter' ? handleScrollTop() : null}
 					className={css.GoUp}
 				/>
 			)}
 		</main>
 	);
 }
-
-export default BasicPage;
 
 export async function getStaticPaths() {
   return {

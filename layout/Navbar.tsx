@@ -69,7 +69,7 @@ function MobileNav() {
 			</Link>
 			<button
 				aria-label="Кнопка навигации"
-				onKeyDown={e => e.key === 'Enter' ? handleOpenMenu() : null }
+				onKeyDown={e => e.key === 'Enter' ? handleOpenMenu() : null}
 				tabIndex={0} 
 				onClick={handleOpenMenu} 
 				className={cx(styles.NavMobile, {

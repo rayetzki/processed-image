@@ -20,9 +20,11 @@ export function City({
 			<div className={css.Stepper__Content}>
 				<h2 className={css.Stepper__Title}>{city}</h2>
 				<h3 className={css.Stepper__Short}>{short}</h3>
-				<p onClick={() => setExpanded(!isExpanded)} title="Развернуть описание" className={cx(css.Stepper__Description, {
-					[css.Stepper__Description_Expanded]: isExpanded
-				})}>
+				<p title="Развернуть описание" 
+					onClick={() => setExpanded(!isExpanded)} 	
+					className={cx(css.Stepper__Description, {
+						[css.Stepper__Description_Expanded]: isExpanded
+					})}>
 					{description}
 				</p>
 				<div className={css.Stepper__Images}>

@@ -36,6 +36,12 @@ export default function Home() {
 							<UpwardsIcon className={styles.NavLinkIcon} />
 						</a>
 					</Link>
+					<Link href='/war'>
+						<a aria-label="Война" className={styles.NavLink}>
+							<p className={styles.NavLinkText}>Война 2022</p>
+							<UpwardsIcon className={styles.NavLinkIcon} />
+						</a>
+					</Link>
 				</div>
 			</nav>
 			<div className={styles.Authors}>
