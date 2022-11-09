@@ -84,5 +84,5 @@ export default function WarPage({
 export async function getStaticProps() {
 	const API_URL = process.env.API_URL || "https://io-film.vercel.app";
 	const images = await fetch(`${API_URL}/api/war`).then(response => response.json());
-	return { props: { images: JSON.parse(images) } };
+	return { props: { images } };
 }
