@@ -2,7 +2,7 @@ import { ResourceApiResponse } from "cloudinary";
 import { useState } from "react";
 import { Gallery, Item } from "react-photoswipe-gallery";
 import Head from "next/head";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import WarStyles from '../layout/War.module.css';
 import GalleryStyles from '../layout/Gallery.module.css';
 import { Grid } from "../layout/Gallery";
@@ -82,7 +82,7 @@ export default function WarPage({
 }
 
 export async function getStaticProps() {
-  const API_URL = process.env.API_URL || "https://io-film.vercel.app";
+	const API_URL = process.env.API_URL || "https://io-film.vercel.app";
 	const images = await fetch(`${API_URL}/api/war`).then(response => response.json());
 	return { props: { images: JSON.parse(images) } };
 }

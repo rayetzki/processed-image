@@ -3,7 +3,7 @@ import { Gallery, Item } from 'react-photoswipe-gallery';
 import { type ResourceApiResponse } from "cloudinary";
 import { type GetStaticPropsContext } from "next";
 import { type Img } from '../types';
-import Image from 'next/image'; 
+import Image from "next/legacy/image"; 
 import Head from "next/head";
 import css from '../layout/Gallery.module.css';
 import UpwardsIcon from '../public/go-up.svg';
