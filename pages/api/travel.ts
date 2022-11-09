@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { ResourceApiResponse, v2 as cloudinary } from 'cloudinary';
+import { v2 as cloudinary } from 'cloudinary';
 import info from './cities.json';
 
 export default async function handler(request: NextApiRequest, response: NextApiResponse) {
@@ -8,7 +8,7 @@ export default async function handler(request: NextApiRequest, response: NextApi
 	if (!tag || Array.isArray(tag)) return response.status(400).json({ message: 'Bad Request' });
 
 	try {
-		const { resources }: ResourceApiResponse = await cloudinary.api.resources_by_tag(tag, { 
+		const { resources } = await cloudinary.api.resources_by_tag(tag, { 
 			resource_type: 'image',
 			keep_original: true,
 			tags: true,

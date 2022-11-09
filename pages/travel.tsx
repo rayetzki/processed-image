@@ -19,10 +19,8 @@ export default function Cities({ cities }: CitiesProps) {
 			</Head>
 			<section className={css.Cities}>
 				<div className={css.Cities__Head}>
-					<Link href='/'>
-						<a aria-label="На главную">
-							<BackArrow className={css.Cities__Back} />
-						</a>
+					<Link href='/' aria-label="На главную">
+						<BackArrow className={css.Cities__Back} />
 					</Link>
 					<h1 className={css.Cities__Header}>Поездки</h1>
 				</div>

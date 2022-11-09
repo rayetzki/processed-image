@@ -110,6 +110,6 @@ export async function getStaticProps(context: GetStaticPropsContext) {
 	const folder = context.params?.slug && context.params.slug[0];
 	const API_URL = process.env.API_URL || "https://io-film.vercel.app";
 	if (!folder) return;
-	const images: ResourceApiResponse = await fetch(`${API_URL}/api/images?folder=${folder}`).then(response => response.json());
+	const images = await fetch(`${API_URL}/api/images?folder=${folder}`).then<ResourceApiResponse>(response => response.json());
 	return { props: { images, page: folder } };
 }

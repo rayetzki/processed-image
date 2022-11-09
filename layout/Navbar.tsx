@@ -32,10 +32,8 @@ function DesktopNav() {
 				<li key={route.caption} role="menuitem" className={cx(styles.LinkBlock, {
 					[styles.Active]: route.link === currentRoute
 				})}>
-					<Link href={route.link}>
-						<a className={styles.Link}>
-							{route.caption}
-						</a>
+					<Link href={route.link} className={styles.Link}>
+						{route.caption}
 					</Link>
 				</li>
 			))}
@@ -60,12 +58,10 @@ function MobileNav() {
 	return (
 		<div className={styles.NavMobileBlock}>
 			<Link href="/">
-				<a>
-					<span className={styles.NavMobileLogoTitle} aria-label="Логотип">
-						<FilmRollIcon className={styles.NavMobileLogo} />
-						<h2 className={styles.NavMobileTitle}>Пленочная I & 0</h2>
-					</span>
-				</a>
+				<span className={styles.NavMobileLogoTitle} aria-label="Логотип">
+					<FilmRollIcon className={styles.NavMobileLogo} />
+					<h2 className={styles.NavMobileTitle}>Пленочная I & 0</h2>
+				</span>
 			</Link>
 			<button
 				aria-label="Кнопка навигации"
@@ -86,8 +82,8 @@ function MobileNav() {
 						<span key={route.caption} aria-current={route.link === currentRoute} role="menuitem" className={cx({
 							[styles.NavMobileActive]: route.link === currentRoute
 						})}>
-							<Link href={route.link || '/'}>
-								<a className={styles.Link}>{route.caption}</a>
+							<Link href={route.link || '/'} className={styles.Link}>
+								{route.caption}
 							</Link>
 						</span>
 					))}

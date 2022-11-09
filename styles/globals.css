@@ -1,5 +1,8 @@
 @media (prefers-color-scheme: dark) {
 	:root {
+		--main-font: 'Caveat', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, cursive;
+		
 		--background: black;
 		--color: white;
 
@@ -28,6 +31,9 @@
 
 @media (prefers-color-scheme: light) {
 	:root {
+		--main-font: 'Caveat', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, cursive;
+		
 		--background: white;
 		--color: black;
 
@@ -65,8 +71,7 @@ html, body {
 	scrollbar-arrow-color: var(--scrollbar-track-color);
 	overflow: auto;
   margin: 0;
-  font-family: 'Caveat', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, cursive;
+  font-family: var(--main-font);
 }
 
 body::-webkit-scrollbar-thumb {

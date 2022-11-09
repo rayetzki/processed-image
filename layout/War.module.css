@@ -1,0 +1,32 @@
+.Nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.Tab {
+  margin: 10px 0;
+  min-width: 8em;
+  padding: 1em;
+  font-family: var(--main-font);
+  font-size: 2em;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid lavender;
+  background: transparent;
+}
+
+.Tab[aria-current="true"] {
+  border-color: lightsalmon;
+  color: lightcoral;
+  text-decoration: 1.5px underline dashed;
+}
+
+.Tab[aria-current="true"]:not([autofocus=""]) {
+  color: lightslategray;
+}
+
+.Tab:hover:not([aria-current="true"]) {
+  border-color: red;
+}
